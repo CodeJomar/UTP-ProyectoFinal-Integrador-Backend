@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dash Flow - Control de Finanzas</title>
+
+  <!-- Icons de Google -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Externo -->
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <!-- HERO SECTION -->
+  <section class="hero-section-JE">
+    <div class="container-JE">
+      <div class="hero-grid-JE">
+        <!-- COLUMNA DE INFORMACIÓN -->
+        <div class="hero-content-JE">
+          <div class="logo-header-JE">
+            <img src="./images/logo-dashboard.png" alt="Dash Flow Logo">
+            <h2>DASH <span class="accent-JE">FLOW</span></h2>
+          </div>
+          <h1>Este es el comienzo de algo grande</h1>
+          <p>
+            Gestionar un pequeño negocio hoy en día ya es difícil. Evita más complicaciones
+            abandonando métodos comerciales obsoletos y tediosos. Nuestro objetivo es agilizar
+            el comercio, haciéndolo más fácil y rápido que nunca.
+          </p>
+          <div class="hero-buttons-JE">
+            <button class="btn-outline-JE" id="loginBtn">
+              <span>Iniciar Sesión</span>
+              <span class="material-icons-sharp">login</span>
+            </button>
+            <button class="btn-primary-JE" id="registerBtn">
+              <span>Registrarse</span>
+              <span class="material-icons-sharp">person_add</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- COLUMNA DE IMÁGENES -->
+        <div class="hero-images-JE">
+          <div class="image-grid-JE">
+            <div class="image-box-JE">
+              <img src="./images/dashboard-horizontal-1.jpg" alt="Dashboard Preview 1">
+            </div>
+            <div class="image-box-JE tall-JE">
+              <img src="./images/dashboard-vertical.jpg" alt="Dashboard Preview 2">
+            </div>
+            <div class="image-box-JE">
+              <img src="./images/dashboard-horizontal-2.jpg" alt="Dashboard Preview 3">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DE INICIO DE SESIÓN -->
+  <div class="modal-JE" id="loginModal">
+    <div class="modal-content-JE">
+      <div class="modal-header-JE">
+        <h2>Iniciar Sesión</h2>
+        <button class="modal-close-JE">
+          <span class="material-icons-sharp">close</span>
+        </button>
+      </div>
+      <div class="modal-body-JE">
+        <form id="loginForm">
+          <div class="form-group-JE">
+            <label for="loginEmail">Correo Electrónico</label>
+            <input type="email" id="loginEmail" name="email" required>
+          </div>
+          <div class="form-group-JE">
+            <label for="loginPassword">Contraseña</label>
+            <div class="password-input-JE">
+              <input type="password" id="loginPassword" name="password" required>
+              <button type="button" class="toggle-password-JE">
+                <span class="material-icons-sharp">visibility</span>
+              </button>
+            </div>
+          </div>
+          <div class="form-options-JE">
+            <label class="checkbox-label-JE">
+              <input type="checkbox" name="remember">
+              <span class="checkmark-JE"></span>
+              Recordarme
+            </label>
+            <a href="#" class="forgot-password-JE">¿Olvidaste tu contraseña?</a>
+          </div>
+          <button type="submit" class="btn-primary-JE btn-full-JE">
+            <span>Iniciar Sesión</span>
+            <span class="material-icons-sharp">login</span>
+          </button>
+        </form>
+        <div class="modal-footer-JE">
+          <p>¿No tienes una cuenta? <a href="#" id="switchToRegister">Regístrate</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE REGISTRO -->
+  <div class="modal-JE" id="registerModal">
+    <div class="modal-content-JE">
+      <div class="modal-header-JE">
+        <h2>Crear Cuenta</h2>
+        <button class="modal-close-JE">
+          <span class="material-icons-sharp">close</span>
+        </button>
+      </div>
+      <div class="modal-body-JE">
+        <form id="registerForm">
+          <div class="form-group-JE">
+            <label for="registerUsername">Nombre de Usuario</label>
+            <input type="text" id="registerUsername" name="username" required>
+          </div>
+          <div class="form-group-JE">
+            <label for="registerEmail">Correo Electrónico</label>
+            <input type="email" id="registerEmail" name="email" required>
+          </div>
+          <div class="form-group-JE">
+            <label for="registerPassword">Contraseña</label>
+            <div class="password-input-JE">
+              <input type="password" id="registerPassword" name="password" required>
+              <button type="button" class="toggle-password-JE">
+                <span class="material-icons-sharp">visibility</span>
+              </button>
+            </div>
+          </div>
+          <div class="form-group-JE">
+            <label for="registerConfirmPassword">Confirmar Contraseña</label>
+            <div class="password-input-JE">
+              <input type="password" id="registerConfirmPassword" name="confirmPassword" required>
+              <button type="button" class="toggle-password-JE">
+                <span class="material-icons-sharp">visibility</span>
+              </button>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary-JE btn-full-JE">
+            <span>Crear Cuenta</span>
+            <span class="material-icons-sharp">person_add</span>
+          </button>
+        </form>
+        <div class="modal-footer-JE">
+          <p>¿Ya tienes una cuenta? <a href="#" id="switchToLogin">Inicia Sesión</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY DE FONDO PARA MODALES -->
+  <div class="modal-overlay-JE" id="modalOverlay"></div>
+
+  <!-- SCRIPT -->
+  <script src="./js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dash Flow - Control de Finanzas</title>
+
+  <!-- Icons de Google -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+
+  <!-- CSS Externo -->
+  <link rel="stylesheet" href="./css/tiers.css">
+
+  <script defer src="./js/script.js"></script>
+</head>
+
+<body>
+
+  <div class="container-JE">
+
+    <!-- INICIO DE LA BARRA DE NAVEGACIÓN -->
+
+    <aside class="aside-JE">
+      <div class="top-JE">
+
+        <div class="logo-JE">
+          <img class="img-JE" src="./images/logo-dashboard.png" alt="logo">
+          <h2 class="h2-JE">DASH <span class="peligro-JE">FLOW</span></h2>
+        </div>
+
+        <div class="close-JE" id="close-btn-JE">
+          <span class="material-icons-sharp">close</span>
+        </div>
+
+      </div>
+
+
+      <div class="sidebar-JE">
+
+        <a th:href="@{/dashboard}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">dashboard</span>
+          <h3 class="h3-JE">Dashboard</h3>
+        </a>
+
+        <a th:href="@{/cuenta}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">person_outline</span>
+          <h3 class="h3-JE">Cuenta</h3>
+        </a>
+
+        <a th:href="@{/productos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">inventory</span>
+          <h3 class="h3-JE">Productos</h3>
+        </a>
+
+        <a th:href="@{/ingresos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">insights</span>
+          <h3 class="h3-JE">Flujo de Ingresos</h3>
+        </a>
+
+        <a th:href="@{/pedidos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">list_alt</span>
+          <h3 class="h3-JE">Pedidos</h3>
+          <span class="message-count-danger-JE">26</span>
+        </a>
+
+        <a th:href="@{/empleados}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">badge</span>
+          <h3 class="h3-JE">Empleados</h3>
+        </a>
+
+        <a th:href="@{/tiers}" class="hipervinculo-JE active-JE">
+          <span class="material-icons-sharp">workspace_premium</span>
+          <h3 class="h3-JE">Tiers</h3>
+          <span class="message-count-success-JE">Free</span>
+        </a>
+
+        <a th:href="@{/reportes}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">error_outline</span>
+          <h3 class="h3-JE">Reportes</h3>
+        </a>
+
+        <a href="#" class="hipervinculo-JE">
+          <span class="material-icons-sharp">logout</span>
+          <h3 class="h3-JE">Salir</h3>
+        </a>
+
+      </div>
+    </aside>
+
+    <!-- FIN DE LA BARRA DE NAVEGACIÓN -->
+
+    <!-- INICIO DEL CONTENIDO PRINCIPAL MAIN -->
+
+    <main class="main-JE">
+      <h1 class="h1-JE">Planes y Precios</h1>
+
+      <!-- INICIO DEL HEADER DE PRECIOS -->
+      <div class="pricing-header-JE">
+        <h2 class="h2-JE">Elige el plan perfecto para tu negocio</h2>
+        <p class="p-JE text-muted-JE">Todos los planes incluyen soporte 24/7 y actualizaciones gratuitas</p>
+
+        <!-- TOGGLE ANUAL/MENSUAL -->
+        <div class="billing-toggle-JE">
+          <span class="billing-label-JE">Mensual</span>
+          <label class="billing-switch-JE">
+            <input type="checkbox" id="billingToggle">
+            <span class="billing-slider-JE"></span>
+          </label>
+          <span class="billing-label-JE">Anual <span class="discount-badge-JE">-20%</span></span>
+        </div>
+      </div>
+      <!-- FIN DEL HEADER DE PRECIOS -->
+
+      <!-- INICIO DE LAS TARJETAS DE PRECIOS -->
+      <div class="pricing-cards-JE">
+
+        <!-- PLAN GRATIS -->
+        <div class="pricing-card-JE free-plan-JE">
+          <div class="plan-header-JE">
+            <div class="plan-icon-JE">
+              <span class="material-icons-sharp">star_border</span>
+            </div>
+            <h3 class="h3-JE">Gratis</h3>
+            <p class="p-JE text-muted-JE">Perfecto para empezar</p>
+          </div>
+
+          <div class="plan-price-JE">
+            <span class="currency-JE">$</span>
+            <span class="amount-JE" data-monthly="0" data-yearly="0">0</span>
+            <span class="period-JE">/mes</span>
+          </div>
+
+          <div class="plan-features-JE">
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Dashboard básico</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Hasta 100 productos</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>5 empleados máximo</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Reportes básicos</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Soporte por email</span>
+            </div>
+            <div class="feature-JE disabled-JE">
+              <span class="material-icons-sharp">cancel</span>
+              <span>Análisis avanzado</span>
+            </div>
+            <div class="feature-JE disabled-JE">
+              <span class="material-icons-sharp">cancel</span>
+              <span>Integraciones</span>
+            </div>
+            <div class="feature-JE disabled-JE">
+              <span class="material-icons-sharp">cancel</span>
+              <span>API access</span>
+            </div>
+          </div>
+
+          <button class="plan-button-JE current-plan-JE">
+            <span class="material-icons-sharp">check</span>
+            Plan Actual
+          </button>
+        </div>
+
+        <!-- PLAN ESTÁNDAR -->
+        <div class="pricing-card-JE standard-plan-JE">
+          <div class="plan-header-JE">
+            <div class="plan-icon-JE">
+              <span class="material-icons-sharp">star_half</span>
+            </div>
+            <h3 class="h3-JE">Estándar</h3>
+            <p class="p-JE text-muted-JE">Para pequeñas empresas</p>
+          </div>
+
+          <div class="plan-price-JE">
+            <span class="currency-JE">$</span>
+            <span class="amount-JE" data-monthly="29" data-yearly="24">29</span>
+            <span class="period-JE">/mes</span>
+          </div>
+
+          <div class="plan-features-JE">
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Todo lo del plan Gratis</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Hasta 1,000 productos</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>15 empleados máximo</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Reportes avanzados</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Análisis de ventas</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Soporte prioritario</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>5 integraciones</span>
+            </div>
+            <div class="feature-JE disabled-JE">
+              <span class="material-icons-sharp">cancel</span>
+              <span>API access</span>
+            </div>
+          </div>
+
+          <button class="plan-button-JE upgrade-button-JE">
+            <span class="material-icons-sharp">upgrade</span>
+            Actualizar Plan
+          </button>
+        </div>
+
+        <!-- PLAN PRO -->
+        <div class="pricing-card-JE pro-plan-JE popular-JE">
+          <div class="popular-badge-JE">
+            <span class="material-icons-sharp">star</span>
+            Más Popular
+          </div>
+
+          <div class="plan-header-JE">
+            <div class="plan-icon-JE">
+              <span class="material-icons-sharp">star</span>
+            </div>
+            <h3 class="h3-JE">Pro</h3>
+            <p class="p-JE text-muted-JE">Para empresas en crecimiento</p>
+          </div>
+
+          <div class="plan-price-JE">
+            <span class="currency-JE">$</span>
+            <span class="amount-JE" data-monthly="79" data-yearly="63">79</span>
+            <span class="period-JE">/mes</span>
+          </div>
+
+          <div class="plan-features-JE">
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Todo lo del plan Estándar</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Productos ilimitados</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>50 empleados máximo</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Análisis predictivo</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Automatización avanzada</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Soporte 24/7</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Integraciones ilimitadas</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>API access completo</span>
+            </div>
+          </div>
+
+          <button class="plan-button-JE upgrade-button-JE">
+            <span class="material-icons-sharp">upgrade</span>
+            Actualizar Plan
+          </button>
+        </div>
+
+        <!-- PLAN EQUIPO -->
+        <div class="pricing-card-JE team-plan-JE">
+          <div class="plan-header-JE">
+            <div class="plan-icon-JE">
+              <span class="material-icons-sharp">groups</span>
+            </div>
+            <h3 class="h3-JE">Equipo</h3>
+            <p class="p-JE text-muted-JE">Para grandes organizaciones</p>
+          </div>
+
+          <div class="plan-price-JE">
+            <span class="currency-JE">$</span>
+            <span class="amount-JE" data-monthly="149" data-yearly="119">149</span>
+            <span class="period-JE">/mes</span>
+          </div>
+
+          <div class="plan-features-JE">
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Todo lo del plan Pro</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Empleados ilimitados</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Multi-ubicaciones</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Roles y permisos avanzados</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Reportes personalizados</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Gerente de cuenta dedicado</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>Onboarding personalizado</span>
+            </div>
+            <div class="feature-JE">
+              <span class="material-icons-sharp exito-JE">check_circle</span>
+              <span>SLA garantizado</span>
+            </div>
+          </div>
+
+          <button class="plan-button-JE contact-button-JE">
+            <span class="material-icons-sharp">contact_support</span>
+            Contactar Ventas
+          </button>
+        </div>
+
+      </div>
+      <!-- FIN DE LAS TARJETAS DE PRECIOS -->
+
+    </main>
+
+    <!-- FIN DEL CONTENIDO PRINCIPAL MAIN -->
+
+    <!-- INICIO DEL CONTENIDO DE LA DERECHA -->
+
+    <div class="right-JE">
+
+      <!-- INICIO DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
+
+      <div class="top-JE">
+        <button id="menu-btn-JE">
+          <span class="material-icons-sharp">menu</span>
+        </button>
+        <div class="theme-toggler-JE">
+          <span class="material-icons-sharp active-JE">light_mode</span>
+          <span class="material-icons-sharp">dark_mode</span>
+        </div>
+        <div class="profile-JE">
+          <div class="info-JE">
+            <p class="p-JE">Hey <b class="b-JE">Daniel</b></p>
+            <small class="small-JE text-muted-JE">Admin</small>
+          </div>
+          <div class="profile-photo-JE">
+            <img class="img-JE" src="./images/profile-1.jpg" alt="Foto de Perfil">
+          </div>
+        </div>
+      </div>
+
+      <!-- FIN DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
+
+      <!-- INICIO DE COMPARACIÓN DE PLANES -->
+
+      <div class="plan-comparison-JE">
+        <h2>Tu Plan Actual</h2>
+        <div class="current-plan-info-JE">
+          <div class="plan-badge-large-JE">
+            <span class="material-icons-sharp">star_border</span>
+            <h3 class="h3-JE">Plan Gratis</h3>
+          </div>
+
+          <div class="usage-stats-JE">
+            <div class="usage-item-JE">
+              <div class="usage-label-JE">
+                <span class="material-icons-sharp">inventory</span>
+                <span>Productos</span>
+              </div>
+              <div class="usage-bar-JE">
+                <div class="usage-progress-JE" style="width: 45%"></div>
+              </div>
+              <span class="usage-text-JE">45/100</span>
+            </div>
+
+            <div class="usage-item-JE">
+              <div class="usage-label-JE">
+                <span class="material-icons-sharp">badge</span>
+                <span>Empleados</span>
+              </div>
+              <div class="usage-bar-JE">
+                <div class="usage-progress-JE" style="width: 60%"></div>
+              </div>
+              <span class="usage-text-JE">3/5</span>
+            </div>
+
+            <div class="usage-item-JE">
+              <div class="usage-label-JE">
+                <span class="material-icons-sharp">storage</span>
+                <span>Almacenamiento</span>
+              </div>
+              <div class="usage-bar-JE">
+                <div class="usage-progress-JE" style="width: 30%"></div>
+              </div>
+              <span class="usage-text-JE">1.5/5 GB</span>
+            </div>
+          </div>
+
+          <button class="upgrade-cta-JE">
+            <span class="material-icons-sharp">upgrade</span>
+            Actualizar Plan
+          </button>
+        </div>
+      </div>
+
+      <!-- FIN DE COMPARACIÓN DE PLANES -->
+
+      <!-- INICIO DE BENEFICIOS -->
+
+      <div class="benefits-section-JE">
+        <h2 class="h2-JE">¿Por qué actualizar?</h2>
+
+        <div class="benefit-item-JE">
+          <div class="benefit-icon-JE">
+            <span class="material-icons-sharp">trending_up</span>
+          </div>
+          <div class="benefit-content-JE">
+            <h4 class="h4-JE">Más Productos</h4>
+            <p class="p-JE text-muted-JE">Gestiona hasta 1,000 productos con el plan Estándar</p>
+          </div>
+        </div>
+
+        <div class="benefit-item-JE">
+          <div class="benefit-icon-JE">
+            <span class="material-icons-sharp">analytics</span>
+          </div>
+          <div class="benefit-content-JE">
+            <h4 class="h4-JE">Análisis Avanzado</h4>
+            <p class="p-JE text-muted-JE">Obtén insights detallados de tu negocio</p>
+          </div>
+        </div>
+
+        <div class="benefit-item-JE">
+          <div class="benefit-icon-JE">
+            <span class="material-icons-sharp">support_agent</span>
+          </div>
+          <div class="benefit-content-JE">
+            <h4 class="h4-JE">Soporte Prioritario</h4>
+            <p class="p-JE text-muted-JE">Respuesta en menos de 2 horas</p>
+          </div>
+        </div>
+
+        <div class="benefit-item-JE">
+          <div class="benefit-icon-JE">
+            <span class="material-icons-sharp">integration_instructions</span>
+          </div>
+          <div class="benefit-content-JE">
+            <h4 class="h4-JE">Integraciones</h4>
+            <p class="p-JE text-muted-JE">Conecta con tus herramientas favoritas</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIN DE BENEFICIOS -->
+
+      <!-- INICIO DE PREGUNTAS FRECUENTES -->
+
+      <div class="faq-sidebar-JE">
+        <h2 class="h2-JE">Preguntas Frecuentes</h2>
+
+        <div class="faq-item-JE">
+          <div class="faq-question-JE">
+            <h4 class="h4-JE">¿Puedo cambiar de plan?</h4>
+            <span class="material-icons-sharp">expand_more</span>
+          </div>
+          <div class="faq-answer-JE">
+            <p class="p-JE">Sí, puedes actualizar o degradar tu plan en cualquier momento.</p>
+          </div>
+        </div>
+
+        <div class="faq-item-JE">
+          <div class="faq-question-JE">
+            <h4 class="h4-JE">¿Hay costos de configuración?</h4>
+            <span class="material-icons-sharp">expand_more</span>
+          </div>
+          <div class="faq-answer-JE">
+            <p class="p-JE">No, no hay costos de configuración. Puedes comenzar inmediatamente.</p>
+          </div>
+        </div>
+
+        <div class="faq-item-JE">
+          <div class="faq-question-JE">
+            <h4 class="h4-JE">¿Ofrecen descuentos?</h4>
+            <span class="material-icons-sharp">expand_more</span>
+          </div>
+          <div class="faq-answer-JE">
+            <p class="p-JE">Sí, ofrecemos descuentos para organizaciones sin fines de lucro.</p>
+          </div>
+        </div>
+
+        <div class="faq-item-JE">
+          <div class="faq-question-JE">
+            <h4 class="h4-JE">¿Qué métodos de pago aceptan?</h4>
+            <span class="material-icons-sharp">expand_more</span>
+          </div>
+          <div class="faq-answer-JE">
+            <p class="p-JE">Aceptamos todas las principales tarjetas de crédito y transferencias bancarias.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIN DE PREGUNTAS FRECUENTES -->
+
+    </div>
+
+    <!-- FIN DEL CONTENIDO DE LA DERECHA -->
+  </div>
+
+  <!-- Script para la funcionalidad de la página -->
+  <script src="./js/tiers.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dash Flow - Control de Finanzas</title>
+
+  <!-- Icons de Google -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- CSS Externo -->
+  <link rel="stylesheet" href="./css/ingresos.css">
+
+  <script defer src="./js/script.js"></script>
+</head>
+
+<body>
+
+  <div class="container-JE">
+
+    <!-- INICIO DE LA BARRA DE NAVEGACIÓN -->
+
+    <aside class="aside-JE">
+      <div class="top-JE">
+
+        <div class="logo-JE">
+          <img class="img-JE" src="./images/logo-dashboard.png" alt="logo">
+          <h2 class="h2-JE">DASH <span class="peligro-JE">FLOW</span></h2>
+        </div>
+
+        <div class="close-JE" id="close-btn-JE">
+          <span class="material-icons-sharp">close</span>
+        </div>
+
+      </div>
+
+
+      <div class="sidebar-JE">
+
+        <a th:href="@{/dashboard}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">dashboard</span>
+          <h3 class="h3-JE">Dashboard</h3>
+        </a>
+
+        <a th:href="@{/cuenta}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">person_outline</span>
+          <h3 class="h3-JE">Cuenta</h3>
+        </a>
+
+        <a th:href="@{/productos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">inventory</span>
+          <h3 class="h3-JE">Productos</h3>
+        </a>
+
+        <a th:href="@{/ingresos}" class="hipervinculo-JE active-JE">
+          <span class="material-icons-sharp">insights</span>
+          <h3 class="h3-JE">Flujo de Ingresos</h3>
+        </a>
+
+        <a th:href="@{/pedidos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">list_alt</span>
+          <h3 class="h3-JE">Pedidos</h3>
+          <span class="message-count-danger-JE">26</span>
+        </a>
+
+        <a th:href="@{/empleados}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">badge</span>
+          <h3 class="h3-JE">Empleados</h3>
+        </a>
+
+        <a th:href="@{/tiers}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">workspace_premium</span>
+          <h3 class="h3-JE">Tiers</h3>
+          <span class="message-count-success-JE">Free</span>
+        </a>
+
+        <a th:href="@{/reportes}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">error_outline</span>
+          <h3 class="h3-JE">Reportes</h3>
+        </a>
+
+        <a href="#" class="hipervinculo-JE">
+          <span class="material-icons-sharp">logout</span>
+          <h3 class="h3-JE">Salir</h3>
+        </a>
+
+      </div>
+    </aside>
+
+    <!-- FIN DE LA BARRA DE NAVEGACIÓN -->
+
+    <!-- INICIO DEL CONTENIDO PRINCIPAL MAIN -->
+
+    <main class="main-JE">
+
+      <!-- HEADER DE LA PÁGINA -->
+      <div class="page-header-JE">
+        <h1 class="h1-JE">Flujo de Ingresos</h1>
+        <div class="header-actions-JE">
+          <select class="period-selector-JE" id="periodSelector">
+            <option value="7">Últimos 7 días</option>
+            <option value="30" selected>Últimos 30 días</option>
+            <option value="90">Últimos 3 meses</option>
+            <option value="365">Último año</option>
+          </select>
+          <button class="btn-primary-JE" id="exportReportBtn">
+            <span class="material-icons-sharp">download</span>
+            Exportar Reporte
+          </button>
+        </div>
+      </div>
+
+      <!-- TARJETAS DE RESUMEN -->
+      <div class="revenue-summary-JE">
+
+        <div class="summary-card-JE">
+          <div class="card-icon-JE">
+            <span class="material-icons-sharp">attach_money</span>
+          </div>
+          <div class="card-content-JE">
+            <h3 class="h3-JE">Ingresos Totales</h3>
+            <h2 class="h2-JE" id="totalRevenue">$45,280.50</h2>
+            <p class="p-JE trend-positive-JE">
+              <span class="material-icons-sharp">trending_up</span>
+              +12.5% vs mes anterior
+            </p>
+          </div>
+        </div>
+
+        <div class="summary-card-JE">
+          <div class="card-icon-JE">
+            <span class="material-icons-sharp">show_chart</span>
+          </div>
+          <div class="card-content-JE">
+            <h3 class="h3-JE">Promedio Diario</h3>
+            <h2 class="h2-JE" id="dailyAverage">$1,509.35</h2>
+            <p class="p-JE trend-negative-JE">
+              <span class="material-icons-sharp">trending_down</span>
+              -3.2% vs mes anterior
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- GRÁFICOS PRINCIPALES -->
+      <div class="charts-container-JE">
+
+        <!-- GRÁFICO DE BARRAS -->
+        <div class="chart-card-JE">
+          <div class="chart-header-JE">
+            <h3 class="h3-JE">Ingresos por Categoría</h3>
+            <div class="chart-controls-JE">
+              <button class="chart-btn-JE active-JE" data-chart="bar" data-period="month">Mes</button>
+              <button class="chart-btn-JE" data-chart="bar" data-period="quarter">Trimestre</button>
+            </div>
+          </div>
+          <div class="chart-wrapper-JE">
+            <canvas id="barChart"></canvas>
+          </div>
+        </div>
+
+        <!-- GRÁFICO LINEAL -->
+        <div class="chart-card-JE">
+          <div class="chart-header-JE">
+            <h3 class="h3-JE">Tendencia de Ingresos</h3>
+            <div class="chart-controls-JE">
+              <button class="chart-btn-JE active-JE" data-chart="line" data-period="week">Semana</button>
+              <button class="chart-btn-JE" data-chart="line" data-period="month">Mes</button>
+            </div>
+          </div>
+          <div class="chart-wrapper-JE">
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TABLA DE TRANSACCIONES RECIENTES -->
+      <div class="recent-transactions-JE">
+        <div class="transactions-header-JE">
+          <h3 class="h3-JE">Transacciones Recientes</h3>
+          <a href="./pedidos.html" class="view-all-link-JE">Ver todas</a>
+        </div>
+        <div class="transactions-table-JE">
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Monto</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="transactionsTableBody">
+              <!-- Las transacciones se cargarán dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FIN DEL CONTENIDO PRINCIPAL MAIN -->
+
+    <!-- INICIO DEL CONTENIDO DE LA DERECHA -->
+
+    <div class="right-JE">
+
+      <!-- INICIO DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
+
+      <div class="top-JE">
+        <button id="menu-btn-JE">
+          <span class="material-icons-sharp">menu</span>
+        </button>
+        <div class="theme-toggler-JE">
+          <span class="material-icons-sharp active-JE">light_mode</span>
+          <span class="material-icons-sharp">dark_mode</span>
+        </div>
+        <div class="profile-JE">
+          <div class="info-JE">
+            <p class="p-JE">Hey <b class="b-JE">Daniel</b></p>
+            <small class="small-JE text-muted-JE">Admin</small>
+          </div>
+          <div class="profile-photo-JE">
+            <img class="img-JE" src="./images/profile-1.jpg" alt="Foto de Perfil">
+          </div>
+        </div>
+      </div>
+
+      <!-- FIN DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
+
+      <!-- INICIO DE ACCIONES RÁPIDAS -->
+
+      <div class="quick-actions-JE">
+        <h2 class="h2-JE">Acciones Rápidas</h2>
+
+        <a href="./productos.html" class="quick-action-btn-JE">
+          <span class="material-icons-sharp">inventory</span>
+          <div class="action-content-JE">
+            <h4 class="h4-JE">Ver Productos</h4>
+            <p class="p-JE text-muted-JE">Gestionar inventario</p>
+          </div>
+        </a>
+
+        <a href="./empleados.html" class="quick-action-btn-JE">
+          <span class="material-icons-sharp">badge</span>
+          <div class="action-content-JE">
+            <h4 class="h4-JE">Ver Empleados</h4>
+            <p class="p-JE text-muted-JE">Administrar personal</p>
+          </div>
+        </a>
+
+        <a href="./pedidos.html" class="quick-action-btn-JE">
+          <span class="material-icons-sharp">list_alt</span>
+          <div class="action-content-JE">
+            <h4 class="h4-JE">Ver Pedidos</h4>
+            <p class="p-JE text-muted-JE">Revisar transacciones</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- FIN DE ACCIONES RÁPIDAS -->
+
+      <!-- INICIO DEL GRÁFICO CIRCULAR -->
+
+      <div class="donut-chart-section-JE">
+        <h2 class="h2-JE">Distribución de Ingresos</h2>
+        <div class="donut-chart-container-JE">
+          <canvas id="donutChart"></canvas>
+        </div>
+        <div class="donut-legend-JE" id="donutLegend">
+          <!-- La leyenda se generará dinámicamente -->
+        </div>
+      </div>
+
+      <!-- FIN DEL GRÁFICO CIRCULAR -->
+
+    </div>
+
+    <!-- FIN DEL CONTENIDO DE LA DERECHA -->
+  </div>
+
+  <!-- Script para la funcionalidad de ingresos -->
+  <script src="./js/ingresos.js"></script>
+
+</body>
+
+</html>

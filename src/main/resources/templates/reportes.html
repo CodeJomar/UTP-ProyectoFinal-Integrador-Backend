@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dash Flow - Control de Finanzas</title>
+
+  <!-- Icons de Google -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+
+  <!-- CSS Externo -->
+  <link rel="stylesheet" href="./css/reportes.css">
+
+  <script defer src="./js/script.js"></script>
+</head>
+
+<body>
+
+  <div class="container-JE">
+
+    <!-- INICIO DE LA BARRA DE NAVEGACIÓN -->
+
+    <aside class="aside-JE">
+      <div class="top-JE">
+
+        <div class="logo-JE">
+          <img class="img-JE" src="./images/logo-dashboard.png" alt="logo">
+          <h2 class="h2-JE">DASH <span class="peligro-JE">FLOW</span></h2>
+        </div>
+
+        <div class="close-JE" id="close-btn-JE">
+          <span class="material-icons-sharp">close</span>
+        </div>
+
+      </div>
+
+
+      <div class="sidebar-JE">
+
+        <a th:href="@{/dashboard}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">dashboard</span>
+          <h3 class="h3-JE">Dashboard</h3>
+        </a>
+
+        <a th:href="@{/cuenta}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">person_outline</span>
+          <h3 class="h3-JE">Cuenta</h3>
+        </a>
+
+        <a th:href="@{/productos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">inventory</span>
+          <h3 class="h3-JE">Productos</h3>
+        </a>
+
+        <a th:href="@{/ingresos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">insights</span>
+          <h3 class="h3-JE">Flujo de Ingresos</h3>
+        </a>
+
+        <a th:href="@{/pedidos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">list_alt</span>
+          <h3 class="h3-JE">Pedidos</h3>
+          <span class="message-count-danger-JE">26</span>
+        </a>
+
+        <a th:href="@{/empleados}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">badge</span>
+          <h3 class="h3-JE">Empleados</h3>
+        </a>
+
+        <a th:href="@{/tiers}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">workspace_premium</span>
+          <h3 class="h3-JE">Tiers</h3>
+          <span class="message-count-success-JE">Free</span>
+        </a>
+
+        <a th:href="@{/reportes}" class="hipervinculo-JE active-JE">
+          <span class="material-icons-sharp">error_outline</span>
+          <h3 class="h3-JE">Reportes</h3>
+        </a>
+
+        <a href="#" class="hipervinculo-JE">
+          <span class="material-icons-sharp">logout</span>
+          <h3 class="h3-JE">Salir</h3>
+        </a>
+
+      </div>
+    </aside>
+
+    <!-- FIN DE LA BARRA DE NAVEGACIÓN -->
+
+    <!-- INICIO DEL CONTENIDO PRINCIPAL MAIN -->
+
+    <main class="main-JE">
+
+      <!-- HEADER DE LA PÁGINA -->
+      <div class="page-header-JE">
+        <div class="header-content-JE">
+          <h1 class="h1-JE">Reportes y Quejas</h1>
+          <p class="page-description-JE">¿Experimentaste algún problema? Cuéntanos y te ayudaremos a resolverlo.</p>
+        </div>
+        <div class="header-status-JE">
+          <div class="status-indicator-JE">
+            <span class="material-icons-sharp">support_agent</span>
+            <span class="status-text-JE">Soporte disponible 24/7</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMULARIO DE REPORTE -->
+      <div class="report-form-container-JE">
+        <form class="report-form-JE" id="reportForm">
+
+          <!-- INFORMACIÓN PERSONAL -->
+          <div class="form-section-JE">
+            <div class="section-header-JE">
+              <span class="material-icons-sharp">person</span>
+              <h3 class="h3-JE">Información Personal</h3>
+            </div>
+
+            <div class="form-row-JE">
+              <div class="form-group-JE">
+                <label for="fullName">Nombre Completo *</label>
+                <input type="text" id="fullName" name="fullName" required>
+              </div>
+              <div class="form-group-JE">
+                <label for="email">Correo Electrónico *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+            </div>
+
+            <div class="form-row-JE">
+              <div class="form-group-JE">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" name="phone">
+              </div>
+              <div class="form-group-JE">
+                <label for="company">Empresa/Organización</label>
+                <input type="text" id="company" name="company">
+              </div>
+            </div>
+          </div>
+
+          <!-- DETALLES DEL PROBLEMA -->
+          <div class="form-section-JE">
+            <div class="section-header-JE">
+              <span class="material-icons-sharp">bug_report</span>
+              <h3 class="h3-JE">Detalles del Problema</h3>
+            </div>
+
+            <div class="form-row-JE">
+              <div class="form-group-JE">
+                <label for="issueType">Tipo de Problema *</label>
+                <select id="issueType" name="issueType" required>
+                  <option value="">Selecciona el tipo de problema</option>
+                  <option value="technical">Problema Técnico</option>
+                  <option value="billing">Facturación</option>
+                  <option value="account">Problemas de Cuenta</option>
+                  <option value="feature">Solicitud de Función</option>
+                  <option value="performance">Rendimiento</option>
+                  <option value="security">Seguridad</option>
+                  <option value="other">Otro</option>
+                </select>
+              </div>
+              <div class="form-group-JE">
+                <label for="priority">Prioridad *</label>
+                <select id="priority" name="priority" required>
+                  <option value="">Selecciona la prioridad</option>
+                  <option value="low">Baja</option>
+                  <option value="medium">Media</option>
+                  <option value="high">Alta</option>
+                  <option value="critical">Crítica</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-JE">
+              <label for="subject">Asunto *</label>
+              <input type="text" id="subject" name="subject" placeholder="Resumen breve del problema" required>
+            </div>
+
+            <div class="form-group-JE">
+              <label class="description-JE" for="description">Descripción Detallada *</label>
+              <textarea id="description" name="description" rows="6"
+                placeholder="Describe el problema con el mayor detalle posible. Incluye pasos para reproducir el error, mensajes de error específicos, y cualquier información relevante."
+                required></textarea>
+            </div>
+          </div>
+
+          <!-- BOTÓN DE ACCIÓN -->
+          <div class="form-actions-JE">
+            <button type="submit" class="btn-primary-JE">
+              <span class="material-icons-sharp">send</span>
+              Enviar Reporte
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </main>
+
+    <!-- FIN DEL CONTENIDO PRINCIPAL MAIN -->
+
+    <!-- INICIO DEL CONTENIDO DE LA DERECHA -->
+
+    <div class="right-JE">
+
+      <!-- INICIO DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
+
+      <div class="top-JE">
+        <button id="menu-btn-JE">
+          <span class="material-icons-sharp">menu</span>
+        </button>
+        <div class="theme-toggler-JE">
+          <span class="material-icons-sharp active-JE">light_mode</span>
+          <span class="material-icons-sharp">dark_mode</span>
+        </div>
+        <div class="profile-JE">
+          <div class="info-JE">
+            <p class="p-JE">Hey <b class="b-JE">Daniel</b></p>
+            <small class="small-JE text-muted-JE">Admin</small>
+          </div>
+          <div class="profile-photo-JE">
+            <img class="img-JE" src="./images/profile-1.jpg" alt="Foto de Perfil">
+          </div>
+        </div>
+      </div>
+
+      <!-- FIN DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
+
+      <!-- INICIO DE GUÍA DE AYUDA -->
+
+      <div class="help-guide-JE">
+        <h2 class="h2-JE">¿Cómo saber si mi queja es válida?</h2>
+
+        <div class="help-section-JE">
+          <div class="help-item-JE">
+            <div class="help-icon-JE">
+              <span class="material-icons-sharp">check_circle</span>
+            </div>
+            <div class="help-content-JE">
+              <h4 class="h4-JE">Problemas Técnicos</h4>
+              <p class="p-JE">Errores, fallos del sistema, páginas que no cargan, funciones que no responden.</p>
+            </div>
+          </div>
+
+          <div class="help-item-JE">
+            <div class="help-icon-JE">
+              <span class="material-icons-sharp">account_balance_wallet</span>
+            </div>
+            <div class="help-content-JE">
+              <h4 class="h4-JE">Facturación</h4>
+              <p class="p-JE">Cobros incorrectos, problemas con pagos, discrepancias en facturas.</p>
+            </div>
+          </div>
+
+          <div class="help-item-JE">
+            <div class="help-icon-JE">
+              <span class="material-icons-sharp">security</span>
+            </div>
+            <div class="help-content-JE">
+              <h4 class="h4-JE">Seguridad</h4>
+              <p class="p-JE">Accesos no autorizados, problemas de login, vulnerabilidades detectadas.</p>
+            </div>
+          </div>
+
+          <div class="help-item-JE">
+            <div class="help-icon-JE">
+              <span class="material-icons-sharp">speed</span>
+            </div>
+            <div class="help-content-JE">
+              <h4 class="h4-JE">Rendimiento</h4>
+              <p class="p-JE">Lentitud del sistema, timeouts, problemas de conectividad.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROCESO DE RESOLUCIÓN -->
+
+      <div class="resolution-process-JE">
+        <h2 class="h2-JE">Proceso de Resolución</h2>
+
+        <div class="process-steps-JE">
+          <div class="process-step-JE">
+            <div class="step-number-JE">1</div>
+            <div class="step-content-JE">
+              <h4 class="h4-JE">Recepción</h4>
+              <p class="p-JE">Tu reporte es recibido y asignado un número de ticket.</p>
+            </div>
+          </div>
+
+          <div class="process-step-JE">
+            <div class="step-number-JE">2</div>
+            <div class="step-content-JE">
+              <h4 class="h4-JE">Evaluación</h4>
+              <p class="p-JE">Nuestro equipo evalúa la prioridad y complejidad del problema.</p>
+            </div>
+          </div>
+
+          <div class="process-step-JE">
+            <div class="step-number-JE">3</div>
+            <div class="step-content-JE">
+              <h4 class="h4-JE">Resolución</h4>
+              <p class="p-JE">Trabajamos en la solución y te mantenemos informado del progreso.</p>
+            </div>
+          </div>
+
+          <div class="process-step-JE">
+            <div class="step-number-JE">4</div>
+            <div class="step-content-JE">
+              <h4 class="h4-JE">Seguimiento</h4>
+              <p class="p-JE">Verificamos que el problema esté completamente resuelto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFORMACIÓN DE CONTACTO -->
+
+      <div class="contact-info-JE">
+        <h2 class="h2-JE">Contacto Directo</h2>
+
+        <div class="contact-methods-JE">
+          <div class="contact-method-JE">
+            <span class="material-icons-sharp">email</span>
+            <div>
+              <strong>Email</strong>
+              <p>soporte@dashflow.com</p>
+            </div>
+          </div>
+
+          <div class="contact-method-JE">
+            <span class="material-icons-sharp">phone</span>
+            <div>
+              <strong>Teléfono</strong>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FIN DEL CONTENIDO DE LA DERECHA -->
+    </div>
+
+  </div>
+
+  <!-- Script para la funcionalidad de reportes -->
+  <script src="./js/reportes.js"></script>
+
+</body>
+
+</html>

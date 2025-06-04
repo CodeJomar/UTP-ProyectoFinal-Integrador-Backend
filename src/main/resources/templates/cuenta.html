@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dash Flow - Control de Finanzas</title>
+
+  <!-- Icons de Google -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+
+  <!-- CSS Externo -->
+  <link rel="stylesheet" href="./css/cuenta.css">
+
+  <script defer src="./js/script.js"></script>
+</head>
+
+<body>
+
+  <div class="container-JE">
+
+    <!-- INICIO DE LA BARRA DE NAVEGACIÓN -->
+
+    <aside class="aside-JE">
+      <div class="top-JE">
+
+        <div class="logo-JE">
+          <img class="img-JE" src="./images/logo-dashboard.png" alt="logo">
+          <h2 class="h2-JE">DASH <span class="peligro-JE">FLOW</span></h2>
+        </div>
+
+        <div class="close-JE" id="close-btn-JE">
+          <span class="material-icons-sharp">close</span>
+        </div>
+
+      </div>
+
+
+      <div class="sidebar-JE">
+
+        <a th:href="@{/dashboard}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">dashboard</span>
+          <h3 class="h3-JE">Dashboard</h3>
+        </a>
+
+        <a th:href="@{/cuenta}" class="hipervinculo-JE active-JE">
+          <span class="material-icons-sharp">person_outline</span>
+          <h3 class="h3-JE">Cuenta</h3>
+        </a>
+
+        <a th:href="@{/productos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">inventory</span>
+          <h3 class="h3-JE">Productos</h3>
+        </a>
+
+        <a th:href="@{/ingresos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">insights</span>
+          <h3 class="h3-JE">Flujo de Ingresos</h3>
+        </a>
+
+        <a th:href="@{/pedidos}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">list_alt</span>
+          <h3 class="h3-JE">Pedidos</h3>
+          <span class="message-count-danger-JE">26</span>
+        </a>
+
+        <a th:href="@{/empleados}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">badge</span>
+          <h3 class="h3-JE">Empleados</h3>
+        </a>
+
+        <a th:href="@{/tiers}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">workspace_premium</span>
+          <h3 class="h3-JE">Tiers</h3>
+          <span class="message-count-success-JE">Free</span>
+        </a>
+
+        <a th:href="@{/reportes}" class="hipervinculo-JE">
+          <span class="material-icons-sharp">error_outline</span>
+          <h3 class="h3-JE">Reportes</h3>
+        </a>
+
+        <a href="#" class="hipervinculo-JE">
+          <span class="material-icons-sharp">logout</span>
+          <h3 class="h3-JE">Salir</h3>
+        </a>
+
+      </div>
+    </aside>
+
+    <!-- FIN DE LA BARRA DE NAVEGACIÓN -->
+
+    <!-- INICIO DEL CONTENIDO PRINCIPAL MAIN -->
+
+    <main class="main-JE">
+      <h1 class="h1-JE">Mi Cuenta</h1>
+
+      <!-- INICIO DEL CONTENEDOR DE PERFIL -->
+
+      <div class="account-profile-JE">
+        <div class="profile-header-JE">
+          <div class="profile-photo-large-JE">
+            <img class="img-JE" src="./images/profile-1.jpg" alt="Foto de Perfil">
+            <form id="avatar-form" enctype="multipart/form-data">
+              <div class="profile-photo-edit-JE">
+                <span class="material-icons-sharp">photo_camera</span>
+                <input class="file-avatar-JE" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+              </div>
+            </form>
+          </div>
+          <div class="profile-info-JE">
+            <h2 class="h2-JE">Daniel Rodríguez</h2>
+            <p class="p-JE text-muted-JE">Administrador</p>
+            <div class="profile-stats-JE">
+              <div class="stat-JE">
+                <span class="material-icons-sharp primario-JE">shopping_cart</span>
+                <div>
+                  <h3 class="h3-JE">128</h3>
+                  <p class="p-JE text-muted-JE">Pedidos</p>
+                </div>
+              </div>
+              <div class="stat-JE">
+                <span class="material-icons-sharp exito-JE">inventory</span>
+                <div>
+                  <h3 class="h3-JE">45</h3>
+                  <p class="p-JE text-muted-JE">Productos</p>
+                </div>
+              </div>
+              <div class="stat-JE">
+                <span class="material-icons-sharp advertencia-JE">star</span>
+                <div>
+                  <h3 class="h3-JE">4.8</h3>
+                  <p class="p-JE text-muted-JE">Rating</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIN DEL CONTENEDOR DE PERFIL -->
+
+      <!-- INICIO DE LAS PESTAÑAS DE CUENTA -->
+
+      <div class="account-tabs-JE">
+        <div class="tab-header-JE">
+          <div class="tab-item-JE active-tab-JE" data-tab="personal">
+            <span class="material-icons-sharp">person</span>
+            <h3 class="h3-JE">Información Personal</h3>
+          </div>
+          <div class="tab-item-JE" data-tab="security">
+            <span class="material-icons-sharp">security</span>
+            <h3 class="h3-JE">Seguridad</h3>
+          </div>
+          <div class="tab-item-JE" data-tab="notifications">
+            <span class="material-icons-sharp">notifications</span>
+            <h3 class="h3-JE">Notificaciones</h3>
+          </div>
+          <div class="tab-item-JE" data-tab="billing">
+            <span class="material-icons-sharp">credit_card</span>
+            <h3 class="h3-JE">Facturación</h3>
+          </div>
+        </div>
+
+        <!-- CONTENIDO DE PESTAÑAS -->
+        <div class="tab-content-JE">
+          <!-- PESTAÑA DE INFORMACIÓN PERSONAL -->
+          <div class="tab-pane-JE active-pane-JE" id="personal">
+            <form class="account-form-JE">
+              <div class="form-row-JE">
+                <div class="form-group-JE">
+                  <label for="firstName">Nombre</label>
+                  <div class="input-group-JE">
+                    <span class="material-icons-sharp">person</span>
+                    <input type="text" id="firstName" value="Daniel" placeholder="Nombre">
+                  </div>
+                </div>
+                <div class="form-group-JE">
+                  <label for="lastName">Apellido</label>
+                  <div class="input-group-JE">
+                    <span class="material-icons-sharp">person</span>
+                    <input type="text" id="lastName" value="Rodríguez" placeholder="Apellido">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row-JE">
+                <div class="form-group-JE">
+                  <label for="email">Correo Electrónico</label>
+                  <div class="input-group-JE">
+                    <span class="material-icons-sharp">email</span>
+                    <input type="email" id="email" value="daniel@dashflow.com" placeholder="Correo Electrónico">
+                  </div>
+                </div>
+                <div class="form-group-JE">
+                  <label for="phone">Teléfono</label>
+                  <div class="input-group-JE">
+                    <span class="material-icons-sharp">phone</span>
+                    <input type="tel" id="phone" value="+52 123 456 7890" placeholder="Teléfono">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group-JE">
+                <label for="address">Dirección</label>
+                <div class="input-group-JE">
+                  <span class="material-icons-sharp">home</span>
+                  <input type="text" id="address" value="Av. Siempre Viva 742" placeholder="Dirección">
+                </div>
+              </div>
+
+              <div class="form-row-JE">
+                <div class="form-group-JE">
+                  <label for="city">Ciudad</label>
+                  <div class="input-group-JE">
+                    <span class="material-icons-sharp">location_city</span>
+                    <input type="text" id="city" value="Ciudad de México" placeholder="Ciudad">
+                  </div>
+                </div>
+                <div class="form-group-JE">
+                  <label for="zipCode">Organización</label>
+                  <div class="input-group-JE">
+                    <span class="material-icons-sharp">markunread_mailbox</span>
+                    <input type="text" id="zipCode" value="NOMBRE" placeholder="Organización">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group-JE">
+                <label for="bio">Biografía</label>
+                <textarea id="bio" rows="4"
+                  placeholder="Cuéntanos sobre ti">Administrador de Dash Flow con experiencia en gestión de inventarios y análisis de datos financieros.</textarea>
+              </div>
+
+              <div class="form-actions-JE">
+                <button type="button" class="btn-cancel-JE">Cancelar</button>
+                <button type="submit" class="btn-save-JE">Guardar Cambios</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- PESTAÑA DE SEGURIDAD -->
+          <div class="tab-pane-JE" id="security">
+            <form class="account-form-JE">
+              <div class="form-group-JE">
+                <label for="currentPassword">Contraseña Actual</label>
+                <div class="input-group-JE">
+                  <span class="material-icons-sharp">lock</span>
+                  <input type="password" id="currentPassword" placeholder="Contraseña Actual">
+                  <span class="material-icons-sharp toggle-password-JE">visibility_off</span>
+                </div>
+              </div>
+
+              <div class="form-group-JE">
+                <label for="newPassword">Nueva Contraseña</label>
+                <div class="input-group-JE">
+                  <span class="material-icons-sharp">lock</span>
+                  <input type="password" id="newPassword" placeholder="Nueva Contraseña">
+                  <span class="material-icons-sharp toggle-password-JE">visibility_off</span>
+                </div>
+              </div>
+
+              <div class="form-group-JE">
+                <label for="confirmPassword">Confirmar Contraseña</label>
+                <div class="input-group-JE">
+                  <span class="material-icons-sharp">lock</span>
+                  <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña">
+                  <span class="material-icons-sharp toggle-password-JE">visibility_off</span>
+                </div>
+              </div>
+
+              <div class="security-options-JE">
+                <h3 class="h3-JE">Opciones de Seguridad</h3>
+
+                <div class="security-option-JE">
+                  <div>
+                    <h4 class="h4-JE">Autenticación de Dos Factores</h4>
+                    <p class="p-JE text-muted-JE">Añade una capa extra de seguridad a tu cuenta</p>
+                  </div>
+                  <label class="switch-JE">
+                    <input type="checkbox">
+                    <span class="slider-JE"></span>
+                  </label>
+                </div>
+
+                <div class="security-option-JE">
+                  <div>
+                    <h4 class="h4-JE">Notificaciones de Inicio de Sesión</h4>
+                    <p class="p-JE text-muted-JE">Recibe alertas cuando alguien inicie sesión en tu cuenta</p>
+                  </div>
+                  <label class="switch-JE">
+                    <input type="checkbox" checked>
+                    <span class="slider-JE"></span>
+                  </label>
+                </div>
+
+                <div class="security-option-JE">
+                  <div>
+                    <h4 class="h4-JE">Sesiones Activas</h4>
+                    <p class="p-JE text-muted-JE">Administra tus sesiones activas en diferentes dispositivos</p>
+                  </div>
+                  <button class="btn-text-JE">Ver Sesiones</button>
+                </div>
+              </div>
+
+              <div class="form-actions-JE">
+                <button type="button" class="btn-cancel-JE">Cancelar</button>
+                <button type="submit" class="btn-save-JE">Guardar Cambios</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- PESTAÑA DE NOTIFICACIONES -->
+          <div class="tab-pane-JE" id="notifications">
+            <div class="notification-settings-JE">
+              <h3 class="h3-JE">Preferencias de Notificaciones</h3>
+
+              <div class="notification-group-JE">
+                <h4 class="h4-JE">Notificaciones por Correo</h4>
+
+                <div class="notification-option-JE">
+                  <div>
+                    <h5 class="h5-JE">Nuevos Pedidos</h5>
+                    <p class="p-JE text-muted-JE">Recibe notificaciones cuando lleguen nuevos pedidos</p>
+                  </div>
+                  <label class="switch-JE">
+                    <input type="checkbox" checked>
+                    <span class="slider-JE"></span>
+                  </label>
+                </div>
+
+                <div class="notification-option-JE">
+                  <div>
+                    <h5 class="h5-JE">Actualizaciones de Productos</h5>
+                    <p class="p-JE text-muted-JE">Notificaciones sobre cambios en el inventario</p>
+                  </div>
+                  <label class="switch-JE">
+                    <input type="checkbox">
+                    <span class="slider-JE"></span>
+                  </label>
+                </div>
+
+                <div class="notification-option-JE">
+                  <div>
+                    <h5 class="h5-JE">Reportes Semanales</h5>
+                    <p class="p-JE text-muted-JE">Recibe un resumen semanal de actividad</p>
+                  </div>
+                  <label class="switch-JE">
+                    <input type="checkbox" checked>
+                    <span class="slider-JE"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="notification-group-JE">
+                <h4 class="h4-JE">Notificaciones en la Plataforma</h4>
+
+                <div class="notification-option-JE">
+                  <div>
+                    <h5 class="h5-JE">Mensajes de Clientes</h5>
+                    <p class="p-JE text-muted-JE">Notificaciones cuando recibas mensajes de clientes</p>
+                  </div>
+                  <label class="switch-JE">
+                    <input type="checkbox" checked>
+                    <span class="slider-JE"></span>
+                  </label>
+                </div>
+
+                <div class="notification-option-JE">
+                  <div>
+                    <h5 class="h5-JE">Alertas de Inventario</h5>
+                    <p class="p-JE text-muted-JE">Notificaciones cuando el inventario esté bajo</p>
+                  </div>
+                  <label class="switch-JE">
+                    <input type="checkbox" checked>
+                    <span class="slider-JE"></span>
+                  </label>
+                </div>
+
+                <div class="notification-option-JE">
+                  <div>
+                    <h5 class="h5-JE">Actualizaciones del Sistema</h5>
+                    <p class="p-JE text-muted-JE">Notificaciones sobre nuevas funcionalidades</p>
+                  </div>
+                  <label class="switch-JE">
+                    <input type="checkbox">
+                    <span class="slider-JE"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-actions-JE">
+                <button type="button" class="btn-cancel-JE">Cancelar</button>
+                <button type="submit" class="btn-save-JE">Guardar Cambios</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PESTAÑA DE FACTURACIÓN -->
+          <div class="tab-pane-JE" id="billing">
+            <div class="billing-info-JE">
+              <div class="current-plan-JE">
+                <h3 class="h3-JE">Plan Actual</h3>
+                <div class="plan-card-JE">
+                  <div class="plan-header-JE">
+                    <h4 class="h4-JE">Plan Free</h4>
+                    <span class="plan-badge-JE">Activo</span>
+                  </div>
+                  <p class="p-JE">Acceso básico a las funcionalidades de Dash Flow</p>
+                  <div class="plan-features-JE">
+                    <div class="plan-feature-JE">
+                      <span class="material-icons-sharp exito-JE">check_circle</span>
+                      <p class="p-JE">Dashboard básico</p>
+                    </div>
+                    <div class="plan-feature-JE">
+                      <span class="material-icons-sharp exito-JE">check_circle</span>
+                      <p class="p-JE">Hasta 100 productos</p>
+                    </div>
+                    <div class="plan-feature-JE">
+                      <span class="material-icons-sharp exito-JE">check_circle</span>
+                      <p class="p-JE">Reportes mensuales</p>
+                    </div>
+                    <div class="plan-feature-JE">
+                      <span class="material-icons-sharp peligro-JE">cancel</span>
+                      <p class="p-JE text-muted-JE">Análisis avanzado</p>
+                    </div>
+                  </div>
+                  <button class="btn-upgrade-JE">Actualizar Plan</button>
+                </div>
+              </div>
+
+              <div class="payment-methods-JE">
+                <div class="payment-header-JE">
+                  <h3 class="h3-JE">Métodos de Pago</h3>
+                  <button class="btn-text-JE">
+                    <span class="material-icons-sharp">add</span>
+                    Añadir Método
+                  </button>
+                </div>
+
+                <div class="payment-card-JE">
+                  <div class="card-icon-JE">
+                    <span class="material-icons-sharp">credit_card</span>
+                  </div>
+                  <div class="card-details-JE">
+                    <h4 class="h4-JE">Visa terminada en 4242</h4>
+                    <p class="p-JE text-muted-JE">Expira 12/2025</p>
+                  </div>
+                  <div class="card-actions-JE">
+                    <span class="material-icons-sharp">edit</span>
+                    <span class="material-icons-sharp">delete</span>
+                  </div>
+                </div>
+
+                <div class="payment-card-JE">
+                  <div class="card-icon-JE">
+                    <span class="material-icons-sharp">account_balance</span>
+                  </div>
+                  <div class="card-details-JE">
+                    <h4 class="h4-JE">Cuenta Bancaria</h4>
+                    <p class="p-JE text-muted-JE">Banco Nacional ****6789</p>
+                  </div>
+                  <div class="card-actions-JE">
+                    <span class="material-icons-sharp">edit</span>
+                    <span class="material-icons-sharp">delete</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="billing-history-JE">
+                <h3 class="h3-JE">Historial de Facturación</h3>
+                <table class="billing-table-JE">
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Descripción</th>
+                      <th>Monto</th>
+                      <th>Estado</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>01/05/2023</td>
+                      <td>Plan Premium - Mayo 2023</td>
+                      <td>$29.99</td>
+                      <td class="exito-JE">Pagado</td>
+                      <td><span class="material-icons-sharp">file_download</span></td>
+                    </tr>
+                    <tr>
+                      <td>01/04/2023</td>
+                      <td>Plan Premium - Abril 2023</td>
+                      <td>$29.99</td>
+                      <td class="exito-JE">Pagado</td>
+                      <td><span class="material-icons-sharp">file_download</span></td>
+                    </tr>
+                    <tr>
+                      <td>01/03/2023</td>
+                      <td>Plan Premium - Marzo 2023</td>
+                      <td>$29.99</td>
+                      <td class="exito-JE">Pagado</td>
+                      <td><span class="material-icons-sharp">file_download</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FIN DE LAS PESTAÑAS DE CUENTA -->
+
+    </main>
+
+    <!-- FIN DEL CONTENIDO PRINCIPAL MAIN -->
+
+    <!-- INICIO DEL CONTENIDO DE LA DERECHA -->
+
+    <div class="right-JE">
+
+      <!-- INICIO DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
+
+      <div class="top-JE">
+        <button id="menu-btn-JE">
+          <span class="material-icons-sharp">menu</span>
+        </button>
+        <div class="theme-toggler-JE">
+          <span class="material-icons-sharp active-JE">light_mode</span>
+          <span class="material-icons-sharp">dark_mode</span>
+        </div>
+        <div class="profile-JE">
+          <div class="info-JE">
+            <p class="p-JE">Hey <b class="b-JE">Daniel</b></p>
+            <small class="small-JE text-muted-JE">Admin</small>
+          </div>
+          <div class="profile-photo-JE">
+            <img class="img-JE" src="./images/profile-1.jpg" alt="Foto de Perfil">
+          </div>
+        </div>
+      </div>
+
+      <!-- FIN DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
+
+      <!-- INICIO DE LA ACTIVIDAD RECIENTE -->
+
+      <div class="recent-updates-JE">
+        <h2>Actividad Reciente</h2>
+        <div class="updates-JE">
+          <div class="update-JE">
+            <div class="activity-icon-JE security-JE">
+              <span class="material-icons-sharp">security</span>
+            </div>
+            <div class="message-JE">
+              <p class="p-JE">Has actualizado tu <b class="b-JE">contraseña</b> correctamente.</p>
+              <small class="small-JE text-muted-JE">Hace 2 horas</small>
+            </div>
+          </div>
+
+          <div class="update-JE">
+            <div class="activity-icon-JE login-JE">
+              <span class="material-icons-sharp">login</span>
+            </div>
+            <div class="message-JE">
+              <p class="p-JE">Nuevo inicio de sesión desde <b class="b-JE">Ciudad de México</b>.</p>
+              <small class="small-JE text-muted-JE">Ayer</small>
+            </div>
+          </div>
+
+          <div class="update-JE">
+            <div class="activity-icon-JE profile-JE">
+              <span class="material-icons-sharp">edit</span>
+            </div>
+            <div class="message-JE">
+              <p class="p-JE">Has actualizado tu <b class="b-JE">información de perfil</b>.</p>
+              <small class="small-JE text-muted-JE">Hace 3 días</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIN DE LA ACTIVIDAD RECIENTE -->
+
+      <!-- INICIO DE LOS DISPOSITIVOS CONECTADOS -->
+
+      <div class="connected-devices-JE">
+        <h2 class="h2-JE">Dispositivos Conectados</h2>
+
+        <div class="device-JE current-JE">
+          <div class="device-icon-JE">
+            <span class="material-icons-sharp">computer</span>
+          </div>
+          <div class="device-info-JE">
+            <div>
+              <h3 class="h3-JE">Windows PC</h3>
+              <p class="p-JE text-muted-JE">Ciudad de México, México</p>
+              <small class="small-JE text-muted-JE">Dispositivo actual</small>
+            </div>
+            <span class="device-status-JE active-JE"></span>
+          </div>
+        </div>
+
+        <div class="device-JE">
+          <div class="device-icon-JE">
+            <span class="material-icons-sharp">smartphone</span>
+          </div>
+          <div class="device-info-JE">
+            <div>
+              <h3 class="h3-JE">iPhone 13</h3>
+              <p class="p-JE text-muted-JE">Ciudad de México, México</p>
+              <small class="small-JE text-muted-JE">Último acceso: Hace 2 horas</small>
+            </div>
+            <span class="material-icons-sharp peligro-JE">close</span>
+          </div>
+        </div>
+
+        <div class="device-JE">
+          <div class="device-icon-JE">
+            <span class="material-icons-sharp">tablet_mac</span>
+          </div>
+          <div class="device-info-JE">
+            <div>
+              <h3 class="h3-JE">iPad Pro</h3>
+              <p class="p-JE text-muted-JE">Guadalajara, México</p>
+              <small class="small-JE text-muted-JE">Último acceso: Hace 5 días</small>
+            </div>
+            <span class="material-icons-sharp peligro-JE">close</span>
+          </div>
+        </div>
+
+        <div class="device-action-JE">
+          <button class="btn-outline-JE">
+            <span class="material-icons-sharp">logout</span>
+            Cerrar todas las sesiones
+          </button>
+        </div>
+
+      </div>
+
+      <!-- FIN DE LOS DISPOSITIVOS CONECTADOS -->
+
+    </div>
+
+    <!-- FIN DEL CONTENIDO DE LA DERECHA -->
+  </div>
+
+  <!-- Script para las pestañas -->
+  <script src="./js/cuenta.js"></script>
+
+</body>
+
+</html>
