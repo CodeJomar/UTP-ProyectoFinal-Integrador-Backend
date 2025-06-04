@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class Controlador {
-    
+    /*
     @GetMapping("")
     private String paginaIndex() {
         return "index";
     }
-    
+    */
     @GetMapping("dashboard")
     private String paginaDashboard() {
         return "dashboard";
