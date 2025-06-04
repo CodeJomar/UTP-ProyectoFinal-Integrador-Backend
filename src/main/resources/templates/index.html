@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="UTF-8">
@@ -75,10 +75,10 @@
         </button>
       </div>
       <div class="modal-body-JE">
-        <form id="loginForm">
+        <form id="loginForm" th:action="@{login}" method="post">
           <div class="form-group-JE">
             <label for="loginEmail">Correo Electrónico</label>
-            <input type="email" id="loginEmail" name="email" required>
+            <input type="email" id="loginEmail" name="username" required>
           </div>
           <div class="form-group-JE">
             <label for="loginPassword">Contraseña</label>
@@ -119,24 +119,25 @@
         </button>
       </div>
       <div class="modal-body-JE">
-        <form id="registerForm">
+        <form id="registerForm" th:action="@{/registro}" th:object="${usuario}" method="post">
           <div class="form-group-JE">
             <label for="registerUsername">Nombre de Usuario</label>
-            <input type="text" id="registerUsername" name="username" required>
+            <input th:field="*{nombre}" type="text" id="registerUsername" name="username" required>
           </div>
           <div class="form-group-JE">
             <label for="registerEmail">Correo Electrónico</label>
-            <input type="email" id="registerEmail" name="email" required>
+            <input th:field="*{email}" type="email" id="registerEmail" name="email" required>
           </div>
           <div class="form-group-JE">
             <label for="registerPassword">Contraseña</label>
             <div class="password-input-JE">
-              <input type="password" id="registerPassword" name="password" required>
+              <input th:field="*{clave}" type="password" id="registerPassword" name="password" required>
               <button type="button" class="toggle-password-JE">
                 <span class="material-icons-sharp">visibility</span>
               </button>
             </div>
           </div>
+          <!--
           <div class="form-group-JE">
             <label for="registerConfirmPassword">Confirmar Contraseña</label>
             <div class="password-input-JE">
@@ -146,6 +147,7 @@
               </button>
             </div>
           </div>
+          -->
           <button type="submit" class="btn-primary-JE btn-full-JE">
             <span>Crear Cuenta</span>
             <span class="material-icons-sharp">person_add</span>

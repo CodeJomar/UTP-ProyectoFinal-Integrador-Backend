@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('Iniciando sesión con:', { email, password });
 
     // Simulación de inicio de sesión exitoso
-    alert('Inicio de sesión exitoso. Redirigiendo al dashboard...');
-    window.location.href = 'dashboard'; // Redirigir al dashboard
+    //alert('Inicio de sesión exitoso. Redirigiendo al dashboard...');
+    //window.location.href = 'dashboard'; // Redirigir al dashboard
   });
 
   registerForm.addEventListener('submit', function (e) {
@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('Registrando usuario:', { username, email, password });
 
     // Simulación de registro exitoso
-    alert('Registro exitoso. Redirigiendo al dashboard...');
-    window.location.href = 'dashboard'; // Redirigir al dashboard
+    //alert('Registro exitoso. Redirigiendo al dashboard...');
+    //window.location.href = 'dashboard'; // Redirigir al dashboard
   });
 
   // Funciones auxiliares

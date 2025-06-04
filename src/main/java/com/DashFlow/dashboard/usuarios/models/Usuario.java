@@ -1,6 +1,5 @@
 package com.DashFlow.dashboard.usuarios.models;
 
-
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -51,29 +50,37 @@ public class Usuario implements UserDetails {
     @Override public boolean isCredentialsNonExpired() { return true; }
     @Override public boolean isEnabled() { return true; }
     
-    /* RELACIONES */
+    /* RELACIONES CORREGIDAS */
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    // Relación con Rol: Un usuario tiene UN rol (ManyToOne)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rol_id", nullable = false)
     private Rol rol;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    // Relación jerárquica: Un usuario puede tener UN admin (ManyToOne)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "admin_id")
     private Usuario admin;
     
+    // Relación inversa: Un admin puede tener MUCHOS colaboradores (OneToMany)
     @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
     private List<Usuario> colaboradores = new ArrayList<>();
     
-    @OneToOne(mappedBy = "USUARIOS", cascade = CascadeType.ALL, orphanRemoval = true)
+    // Relaciones OneToOne
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private InformacionUsuario informacion;
     
-    @OneToOne(mappedBy = "USUARIOS", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Colaborador colaborador;
+    
+    /* CONSTRUCTORES */
     
     public Usuario() {
     }
     
-    public Usuario(Long id_usuario, String nombre, String email, String clave, Rol rol, Usuario admin, List<Usuario> colaboradores, InformacionUsuario informacion, Colaborador colaborador) {
+    public Usuario(Long id_usuario, String nombre, String email, String clave, Rol rol,
+                   Usuario admin, List<Usuario> colaboradores, InformacionUsuario informacion,
+                   Colaborador colaborador) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.email = email;
@@ -84,6 +91,8 @@ public class Usuario implements UserDetails {
         this.informacion = informacion;
         this.colaborador = colaborador;
     }
+    
+    /* GETTERS Y SETTERS */
     
     public List<Usuario> getColaboradores() {
         return colaboradores;

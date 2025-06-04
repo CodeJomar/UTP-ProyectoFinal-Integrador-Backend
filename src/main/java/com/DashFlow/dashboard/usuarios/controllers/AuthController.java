@@ -24,6 +24,6 @@ public class AuthController {
     @PostMapping("/registro")
     public String registrar(@ModelAttribute Usuario usuario) {
         usuarioService.registrarComoAdmin(usuario);
-        return "redirect:/?registroExitoso";
+        return "redirect:/?dashboard";
     }
 }
