@@ -1,33 +1,35 @@
-package com.DashFlow.dashboard.usuarios.models;
-
+package com.DashFlow.dashboard.auth.models;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ROLES")
+@Table(name = "roles")
 public class Rol {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_rol;
+    private Long id;
     
     @Column(name = "nombre_rol", nullable = false, unique = true)
     private String nombreRol;
     
-    public Rol() {
-    }
+    public Rol() {}
     
-    public Rol(Long id_rol, String nombreRol) {
-        this.id_rol = id_rol;
+    public Rol(Long id, String nombreRol) {
+        this.id = id;
         this.nombreRol = nombreRol;
     }
     
-    public Long getId_rol() {
-        return id_rol;
+    public Rol(String nombreRol) {
+        this.nombreRol = nombreRol;
     }
     
-    public void setId_rol(Long id_rol) {
-        this.id_rol = id_rol;
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
     }
     
     public String getNombreRol() {

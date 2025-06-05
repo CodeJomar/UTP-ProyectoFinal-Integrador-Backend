@@ -83,7 +83,8 @@
           <h3 class="h3-JE">Reportes</h3>
         </a>
 
-        <a href="#" class="hipervinculo-JE">
+        <form id="logoutForm" th:action="@{/logout}" method="post" style="display:none;"></form>
+        <a onclick="document.getElementById('logoutForm').submit();" class="hipervinculo-JE" style="cursor: pointer;">
           <span class="material-icons-sharp">logout</span>
           <h3 class="h3-JE">Salir</h3>
         </a>

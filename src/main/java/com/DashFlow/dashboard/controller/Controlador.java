@@ -18,6 +18,11 @@ public class Controlador {
         return "dashboard";
     }
     
+    @GetMapping("cuenta")
+    private String paginaCuenta() {
+        return "cuenta";
+    }
+    
     @GetMapping("tiers")
     private String paginaTiers() {
         return "tiers";

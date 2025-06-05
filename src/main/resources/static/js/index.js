@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Envío de formularios
   loginForm.addEventListener('submit', function (e) {
-    e.preventDefault();
+    //e.preventDefault();
 
     // Aquí iría la lógica de autenticación
     const email = document.getElementById('loginEmail').value;
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   registerForm.addEventListener('submit', function (e) {
-    e.preventDefault();
+    //e.preventDefault();
 
     // Validar que las contraseñas coincidan
     const password = document.getElementById('registerPassword').value;
@@ -119,3 +119,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.style.overflow = 'auto'; // Restaurar scroll
   }
 });
+
+// Abrir modal si hay error o registro exitoso en la URL
+if (window.location.search.includes("error=true")) {
+  openModal(loginModal);
+}
+
+if (window.location.search.includes("registroExitoso=true")) {
+  openModal(registerModal);
+}
