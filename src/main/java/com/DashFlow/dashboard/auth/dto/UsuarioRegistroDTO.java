@@ -1,6 +1,5 @@
 package com.DashFlow.dashboard.auth.dto;
 
-
 public class UsuarioRegistroDTO {
     
     private Long id;

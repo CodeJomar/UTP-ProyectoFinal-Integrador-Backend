@@ -1,6 +1,5 @@
 package com.DashFlow.dashboard.auth.controller;
 
-
 import com.DashFlow.dashboard.auth.dto.UsuarioRegistroDTO;
 import com.DashFlow.dashboard.auth.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +21,14 @@ public class AuthController {
     }
     
     @GetMapping("/")
-    public String paginaIndex(Model model) {
+    public String mostrarPaginaIndex(Model model) {
         model.addAttribute("usuario", new UsuarioRegistroDTO());
         return "index";
     }
     
     @PostMapping("/registro")
     public String registrarNuevoUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO) {
-        System.out.println("REGISTRO RECIBIDO");
+        //System.out.println("REGISTRO RECIBIDO");
         usuarioService.guardar(registroDTO);
         return "redirect:/?registroExitoso=true";
     }

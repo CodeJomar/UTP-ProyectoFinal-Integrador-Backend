@@ -572,6 +572,34 @@ input:checked+.slider-JE:before {
   background: var(--color-exito);
 }
 
+/* Estilos para mensajes de notificación */
+.alert-JE {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--redondeado-1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alert-success {
+  background-color: rgba(65, 241, 182, 0.1);
+  border: 1px solid var(--color-exito);
+  color: var(--color-exito);
+}
+
+.alert-error {
+  background-color: rgba(255, 119, 130, 0.1);
+  border: 1px solid var(--color-peligro);
+  color: var(--color-peligro);
+}
+
+.text-muted-JE {
+  font-size: 0.8rem;
+  color: var(--color-info-oscuro);
+  margin-top: 0.25rem;
+}
+
 /* Responsive para tablets */
 @media screen and (max-width: 1200px) {
   .form-row-JE {

@@ -75,12 +75,16 @@
         </button>
       </div>
       <div class="modal-body-JE">
+
         <form id="loginForm" th:action="@{/login}" method="post">
           <div class="form-group-JE">
+
             <label for="loginEmail">Correo Electrónico</label>
             <input type="email" id="loginEmail" name="username" required>
+
           </div>
           <div class="form-group-JE">
+
             <label for="loginPassword">Contraseña</label>
             <div class="password-input-JE">
               <input type="password" id="loginPassword" name="password" required>
@@ -88,6 +92,7 @@
                 <span class="material-icons-sharp">visibility</span>
               </button>
             </div>
+
           </div>
           <div class="form-options-JE">
             <label class="checkbox-label-JE">
@@ -103,6 +108,7 @@
             <span class="material-icons-sharp">login</span>
           </button>
         </form>
+
         <div class="modal-footer-JE">
           <p>¿No tienes una cuenta? <a href="#" id="switchToRegister">Regístrate</a></p>
         </div>

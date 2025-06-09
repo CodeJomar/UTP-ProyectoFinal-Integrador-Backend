@@ -166,21 +166,33 @@
         <!-- CONTENIDO DE PESTAÑAS -->
         <div class="tab-content-JE">
           <!-- PESTAÑA DE INFORMACIÓN PERSONAL -->
+          <!-- FORMULARIO CORREGIDO - Solo la sección del formulario -->
           <div class="tab-pane-JE active-pane-JE" id="personal">
-            <form class="account-form-JE">
+
+            <!-- Mostrar mensajes de éxito/error -->
+            <div th:if="${mensaje}" th:class="'alert-JE alert-' + ${tipo}" class="alert-JE">
+              <span th:text="${mensaje}"></span>
+            </div>
+
+            <form th:action="@{/cuenta/actualizar}" th:object="${persona}" method="post" class="account-form-JE">
+
+              <!-- Campo oculto para el ID -->
+              <input type="hidden" th:field="*{id}">
+
               <div class="form-row-JE">
                 <div class="form-group-JE">
                   <label for="firstName">Nombre</label>
                   <div class="input-group-JE">
                     <span class="material-icons-sharp">person</span>
-                    <input type="text" id="firstName" value="Daniel" placeholder="Nombre">
+                    <input type="text" id="firstName" th:value="${nombreUsuario}" placeholder="Nombre" readonly>
                   </div>
+                  <small class="text-muted-JE">Este campo no se puede modificar</small>
                 </div>
                 <div class="form-group-JE">
                   <label for="lastName">Apellido</label>
                   <div class="input-group-JE">
                     <span class="material-icons-sharp">person</span>
-                    <input type="text" id="lastName" value="Rodríguez" placeholder="Apellido">
+                    <input type="text" id="lastName" th:field="*{apellido}" placeholder="Apellido">
                   </div>
                 </div>
               </div>
@@ -190,14 +202,15 @@
                   <label for="email">Correo Electrónico</label>
                   <div class="input-group-JE">
                     <span class="material-icons-sharp">email</span>
-                    <input type="email" id="email" value="daniel@dashflow.com" placeholder="Correo Electrónico">
+                    <input type="email" id="email" th:value="${nombreUsuario}" placeholder="Correo Electrónico" readonly>
                   </div>
+                  <small class="text-muted-JE">Este campo no se puede modificar</small>
                 </div>
                 <div class="form-group-JE">
-                  <label for="phone">Teléfono</label>
+                  <label for="phone">Número de Celular</label>
                   <div class="input-group-JE">
                     <span class="material-icons-sharp">phone</span>
-                    <input type="tel" id="phone" value="+52 123 456 7890" placeholder="Teléfono">
+                    <input type="tel" id="phone" th:field="*{celular}" placeholder="Teléfono">
                   </div>
                 </div>
               </div>
@@ -206,7 +219,7 @@
                 <label for="address">Dirección</label>
                 <div class="input-group-JE">
                   <span class="material-icons-sharp">home</span>
-                  <input type="text" id="address" value="Av. Siempre Viva 742" placeholder="Dirección">
+                  <input type="text" id="address" th:field="*{direccion}" placeholder="Dirección">
                 </div>
               </div>
 
@@ -215,22 +228,21 @@
                   <label for="city">Ciudad</label>
                   <div class="input-group-JE">
                     <span class="material-icons-sharp">location_city</span>
-                    <input type="text" id="city" value="Ciudad de México" placeholder="Ciudad">
+                    <input type="text" id="city" th:field="*{ciudad}" placeholder="Ciudad">
                   </div>
                 </div>
                 <div class="form-group-JE">
-                  <label for="zipCode">Organización</label>
+                  <label for="organization">Organización</label>
                   <div class="input-group-JE">
-                    <span class="material-icons-sharp">markunread_mailbox</span>
-                    <input type="text" id="zipCode" value="NOMBRE" placeholder="Organización">
+                    <span class="material-icons-sharp">business</span>
+                    <input type="text" id="organization" value="Dash Flow" placeholder="Organización" readonly>
                   </div>
                 </div>
               </div>
 
               <div class="form-group-JE">
                 <label for="bio">Biografía</label>
-                <textarea id="bio" rows="4"
-                  placeholder="Cuéntanos sobre ti">Administrador de Dash Flow con experiencia en gestión de inventarios y análisis de datos financieros.</textarea>
+                <textarea id="bio" rows="4" th:field="*{biografia}" placeholder="Cuéntanos sobre ti..."></textarea>
               </div>
 
               <div class="form-actions-JE">

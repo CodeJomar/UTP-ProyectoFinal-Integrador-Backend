@@ -1,5 +1,6 @@
 package com.DashFlow.dashboard.auth.models;
 
+import com.DashFlow.dashboard.cuenta.model.Persona;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,6 +23,34 @@ public class Usuario {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rol_id", referencedColumnName = "id", nullable = false)
     private Rol rol;
+    
+    // Inicio de los Cambios
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "persona_id", referencedColumnName = "id")
+    private Persona persona;
+    
+    // Constructores existentes
+    
+    // Nuevo constructor con persona
+    public Usuario(String nombre, String email, String clave, Rol rol, Persona persona) {
+        this.nombre = nombre;
+        this.email = email;
+        this.clave = clave;
+        this.rol = rol;
+        this.persona = persona;
+    }
+    
+    // Getters y setters existentes
+    
+    public Persona getPersona() {
+        return persona;
+    }
+    
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+    
+    // Fin de los cambios
     
     public Usuario() {
     }
