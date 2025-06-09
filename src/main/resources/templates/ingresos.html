@@ -225,8 +225,8 @@
         </div>
         <div class="profile-JE">
           <div class="info-JE">
-            <p class="p-JE">Hey <b class="b-JE">Daniel</b></p>
-            <small class="small-JE text-muted-JE">Admin</small>
+            <p class="p-JE">Hey <b class="b-JE" th:text="${usuarioInfo.nombre}"></b></p>
+            <small class="small-JE text-muted-JE" th:text="${usuarioInfo.rol}"></small>
           </div>
           <div class="profile-photo-JE">
             <img class="img-JE" src="./images/profile-1.jpg" alt="Foto de Perfil">

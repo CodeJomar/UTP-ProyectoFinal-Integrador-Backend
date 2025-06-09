@@ -110,8 +110,8 @@
             </form>
           </div>
           <div class="profile-info-JE">
-            <h2 class="h2-JE">Daniel Rodríguez</h2>
-            <p class="p-JE text-muted-JE">Administrador</p>
+            <h2 class="h2-JE" th:text="${usuarioInfo.email}"></h2>
+            <p class="p-JE text-muted-JE" th:text="${usuarioInfo.rol}"></p>
             <div class="profile-stats-JE">
               <div class="stat-JE">
                 <span class="material-icons-sharp primario-JE">shopping_cart</span>
@@ -184,7 +184,7 @@
                   <label for="firstName">Nombre</label>
                   <div class="input-group-JE">
                     <span class="material-icons-sharp">person</span>
-                    <input type="text" id="firstName" th:value="${nombreUsuario}" placeholder="Nombre" readonly>
+                    <input type="text" id="firstName" th:value="${usuarioInfo.nombre}" placeholder="Nombre" readonly>
                   </div>
                   <small class="text-muted-JE">Este campo no se puede modificar</small>
                 </div>
@@ -202,7 +202,7 @@
                   <label for="email">Correo Electrónico</label>
                   <div class="input-group-JE">
                     <span class="material-icons-sharp">email</span>
-                    <input type="email" id="email" th:value="${nombreUsuario}" placeholder="Correo Electrónico" readonly>
+                    <input type="email" id="email" th:value="${usuarioInfo.email}" placeholder="Correo Electrónico" readonly>
                   </div>
                   <small class="text-muted-JE">Este campo no se puede modificar</small>
                 </div>
@@ -543,8 +543,8 @@
         </div>
         <div class="profile-JE">
           <div class="info-JE">
-            <p class="p-JE">Hey <b class="b-JE">Daniel</b></p>
-            <small class="small-JE text-muted-JE">Admin</small>
+            <p class="p-JE">Hey <b class="b-JE" th:text="${usuarioInfo.nombre}"></b></p>
+            <small class="small-JE text-muted-JE" th:text="${usuarioInfo.rol}"></small>
           </div>
           <div class="profile-photo-JE">
             <img class="img-JE" src="./images/profile-1.jpg" alt="Foto de Perfil">

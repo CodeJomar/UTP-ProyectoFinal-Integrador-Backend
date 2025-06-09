@@ -20,18 +20,15 @@ public class CuentaController {
     private PersonaService personaService;
     
     @GetMapping
-    public String mostrarPaginaCuenta(Model model, Authentication authentication) {
+    public String mostrarPaginaCuenta(Model model) {
         PersonaDTO personaDTO = personaService.obtenerPersonaUsuarioActual();
         model.addAttribute("persona", personaDTO);
-        
-        if (authentication != null) {
-            model.addAttribute("nombreUsuario", authentication.getName());
-        }
         return "cuenta";
     }
     
     @PostMapping("/actualizar")
-    public String actualizarInformacionPersonal(@ModelAttribute("persona") PersonaDTO personaDTO, RedirectAttributes redirectAttributes) {
+    public String actualizarInformacionPersonal(@ModelAttribute("persona") PersonaDTO personaDTO,
+                                                RedirectAttributes redirectAttributes) {
         try {
             personaService.actualizarPersona(personaDTO);
             redirectAttributes.addFlashAttribute("mensaje", "Información personal actualizada con éxito");

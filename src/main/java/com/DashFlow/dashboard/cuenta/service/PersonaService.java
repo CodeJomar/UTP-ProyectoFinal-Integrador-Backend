@@ -20,31 +20,25 @@ public class PersonaService {
     @Autowired
     private UsuarioRepository usuarioRepository;
     
-    /**
-     * Obtiene la información de la persona asociada al usuario autenticado
-     */
     @Transactional(readOnly = true)
     public PersonaDTO obtenerPersonaUsuarioActual() {
         Usuario usuario = obtenerUsuarioAutenticado();
         Persona persona = usuario.getPersona();
         
         if (persona == null) {
+            // Si no hay persona asociada, crear un DTO vacío
             return new PersonaDTO();
         }
         
         return convertirADTO(persona);
     }
     
-    /**
-     * Actualiza la información de la persona asociada al usuario autenticado
-     */
     @Transactional
     public PersonaDTO actualizarPersona(PersonaDTO personaDTO) {
         Usuario usuario = obtenerUsuarioAutenticado();
         Persona persona = usuario.getPersona();
         
         if (persona == null) {
-            // Si no existe una persona asociada, crear una nueva
             persona = new Persona();
             usuario.setPersona(persona);
         }
@@ -56,49 +50,26 @@ public class PersonaService {
         persona.setCiudad(personaDTO.getCiudad());
         persona.setBiografia(personaDTO.getBiografia());
         
-        // Guardar la persona
         persona = personaRepository.save(persona);
-        
-        // Guardar la relación con el usuario
         usuarioRepository.save(usuario);
         
         return convertirADTO(persona);
     }
     
-    /**
-     * Obtiene el usuario autenticado actualmente
-     */
     private Usuario obtenerUsuarioAutenticado() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         return usuarioRepository.findByEmail(email);
     }
     
-    /**
-     * Convierte una entidad Persona a un DTO
-     */
     private PersonaDTO convertirADTO(Persona persona) {
-        return new PersonaDTO(
-                persona.getId(),
-                persona.getApellido(),
-                persona.getCelular(),
-                persona.getDireccion(),
-                persona.getCiudad(),
-                persona.getBiografia()
-        );
-    }
-    
-    /**
-     * Convierte un DTO a una entidad Persona
-     */
-    private Persona convertirAEntidad(PersonaDTO dto) {
-        Persona persona = new Persona();
-        persona.setId(dto.getId());
-        persona.setApellido(dto.getApellido());
-        persona.setCelular(dto.getCelular());
-        persona.setDireccion(dto.getDireccion());
-        persona.setCiudad(dto.getCiudad());
-        persona.setBiografia(dto.getBiografia());
-        return persona;
+        PersonaDTO dto = new PersonaDTO();
+        dto.setId(persona.getId());
+        dto.setApellido(persona.getApellido());
+        dto.setCelular(persona.getCelular());
+        dto.setDireccion(persona.getDireccion());
+        dto.setCiudad(persona.getCiudad());
+        dto.setBiografia(persona.getBiografia());
+        return dto;
     }
 }
