@@ -81,7 +81,8 @@
                 </a>
 
                 <form id="logoutForm" th:action="@{/logout}" method="post" style="display:none;"></form>
-                <a onclick="document.getElementById('logoutForm').submit();" class="hipervinculo-JE" style="cursor: pointer;">
+                <a onclick="document.getElementById('logoutForm').submit();" class="hipervinculo-JE"
+                    style="cursor: pointer;">
                     <span class="material-icons-sharp">logout</span>
                     <h3 class="h3-JE">Salir</h3>
                 </a>
@@ -376,31 +377,26 @@
 
                                 <div class="form-row-JE">
                                     <div class="form-group-JE">
-                                        <label for="employeeName">Nombre Completo *</label>
+                                        <label for="employeeName">Nombre</label>
                                         <input type="text" id="employeeName" name="name" required>
                                     </div>
 
                                     <div class="form-group-JE">
-                                        <label for="employeeEmail">Email *</label>
-                                        <input type="email" id="employeeEmail" name="email" required>
+                                        <label for="employeeSurname">Apellido </label>
+                                        <input type="text" id="employeeSurname" name="surname">
                                     </div>
                                 </div>
 
                                 <div class="form-row-JE">
                                     <div class="form-group-JE">
-                                        <label for="employeePhone">Teléfono</label>
-                                        <input type="tel" id="employeePhone" name="phone">
+                                        <label for="employeeEmail">Email *</label>
+                                        <input type="email" id="employeeEmail" name="email" required>
                                     </div>
 
                                     <div class="form-group-JE">
-                                        <label for="employeeHireDate">Fecha de Contratación *</label>
-                                        <input type="date" id="employeeHireDate" name="hireDate" required>
+                                        <label for="employeePassword">Contraseña *</label>
+                                        <input type="password" id="employeePassword" name="password" required>
                                     </div>
-                                </div>
-
-                                <div class="form-group-JE">
-                                    <label for="employeeAddress">Dirección</label>
-                                    <textarea id="employeeAddress" name="address" rows="3"></textarea>
                                 </div>
                             </div>
 
@@ -409,8 +405,26 @@
 
                                 <div class="form-row-JE">
                                     <div class="form-group-JE">
-                                        <label for="employeePosition">Puesto *</label>
-                                        <input type="text" id="employeePosition" name="position" required>
+                                        <label for="employeeHireDate">Fecha de Contratación</label>
+                                        <input type="date" id="employeeHireDate" name="hireDate" required>
+                                    </div>
+
+                                    <div class="form-group-JE">
+                                        <label for="employeeFinalDate">Fecha de Finalización</label>
+                                        <input type="date" id="employeeFinalDate" name="finalDate" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row-JE">
+                                    <div class="form-group-JE">
+                                        <label for="employeeStatus">Estado *</label>
+                                        <select id="employeeStatus" name="status" required>
+                                            <option value="">Seleccionar estado</option>
+                                            <option value="activo">Activo</option>
+                                            <option value="vacaciones">Vacaciones</option>
+                                            <option value="ausente">Ausente</option>
+                                            <option value="inactivo">Inactivo</option>
+                                        </select>
                                     </div>
 
                                     <div class="form-group-JE">
@@ -419,9 +433,7 @@
                                             <option value="">Seleccionar departamento</option>
                                             <option value="ventas">Ventas</option>
                                             <option value="marketing">Marketing</option>
-                                            <option value="recursos_humanos">Recursos Humanos</option>
                                             <option value="operaciones">Operaciones</option>
-                                            <option value="ti">TI</option>
                                             <option value="contabilidad">Contabilidad</option>
                                         </select>
                                     </div>
@@ -439,37 +451,11 @@
                                     <div class="form-group-JE">
                                         <label for="employeeRole">Rol de Acceso</label>
                                         <select id="employeeRole" name="role">
+                                            <option value="">Seleccionar rol</option>
                                             <option value="empleado">Empleado</option>
                                             <option value="gerente">Gerente</option>
                                             <option value="admin">Administrador</option>
                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-section-JE">
-                                <h3 class="h3-JE">Foto de Perfil</h3>
-
-                                <div class="image-upload-JE">
-                                    <div class="image-preview-JE" id="imagePreview">
-                                        <span class="material-icons-sharp">add_photo_alternate</span>
-                                        <p class="p-JE">Haz clic para subir una foto</p>
-                                    </div>
-                                    <input type="file" id="employeeImage" name="image" accept="image/*"
-                                        style="display: none;">
-                                </div>
-                            </div>
-
-                            <div class="form-section-JE">
-                                <h3 class="h3-JE">Configuración</h3>
-
-                                <div class="form-row-JE">
-                                    <div class="form-group-JE">
-                                        <label class="checkbox-label-JE">
-                                            <input type="checkbox" id="employeeActive" name="active" checked>
-                                            <span class="checkmark-JE"></span>
-                                            Empleado activo
-                                        </label>
                                     </div>
                                 </div>
                             </div>
