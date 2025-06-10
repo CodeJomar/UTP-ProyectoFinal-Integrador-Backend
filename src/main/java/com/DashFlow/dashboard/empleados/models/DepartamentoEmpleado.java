@@ -1,6 +1,6 @@
 package com.DashFlow.dashboard.empleados.models;
 
-public enum Departamento {
+public enum DepartamentoEmpleado {
     VENTAS("Ventas", "primario-JE"),
     MARKETING("Marketing", "exito-JE"),
     OPERACIONES("Operaciones", "advertencia-JE"),
@@ -10,7 +10,7 @@ public enum Departamento {
     private final String nombre;
     private final String cssClass;
     
-    Departamento(String nombre, String cssClass) {
+    DepartamentoEmpleado(String nombre, String cssClass) {
         this.nombre = nombre;
         this.cssClass = cssClass;
     }

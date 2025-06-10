@@ -1,35 +1,37 @@
 package com.DashFlow.dashboard.empleados.models;
 
+import com.DashFlow.dashboard.auth.models.Rol;
 import com.DashFlow.dashboard.auth.models.Usuario;
+import com.DashFlow.dashboard.cuenta.model.Persona;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "empleados")
+@Table(name = "empleados", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Empleado {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", nullable = false)
-    private Usuario owner; // El administrador que creó este empleado
+    @Column(name = "nombre", nullable = false)
+    private String nombre;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "empleado_id")
-    private Usuario empleado; // El usuario asociado al empleado (si tiene acceso al sistema)
+    @Column(nullable = false, unique = true)
+    private String email;
+    
+    @Column(nullable = false)
+    private String clave;
     
     @Column(name = "fecha_contratacion", nullable = false)
     private LocalDate fechaContratacion;
     
-    @Column(name = "fecha_despido")
+    @Column(name = "fecha_despido", nullable = false)
     private LocalDate fechaDespido;
     
-    @Column(name = "salario", precision = 10, scale = 2)
+    @Column(name = "salario", nullable = false)
     private BigDecimal salario;
     
     @Enumerated(EnumType.STRING)
@@ -38,60 +40,44 @@ public class Empleado {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "departamento", nullable = false)
-    private Departamento departamento;
+    private DepartamentoEmpleado departamento;
     
-    @Column(name = "fecha_creacion", nullable = false)
-    private LocalDateTime fechaCreacion;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "admin_id", nullable = false)
+    private Usuario jefe; // El administrador que creó este empleado
     
-    @Column(name = "fecha_actualizacion")
-    private LocalDateTime fechaActualizacion;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rol_id", referencedColumnName = "id", nullable = false)
+    private Rol rol;
     
-    // Constructor vacío
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "persona_id", referencedColumnName = "id")
+    private Persona persona;
+    
     public Empleado() {
-        this.fechaCreacion = LocalDateTime.now();
-        this.estado = EstadoEmpleado.ACTIVO;
     }
     
-    // Constructor con parámetros básicos
-    public Empleado(Usuario owner, LocalDate fechaContratacion, EstadoEmpleado estado,
-                    Departamento departamento, BigDecimal salario) {
-        this();
-        this.owner = owner;
+    public Empleado(Long id, String nombre, String email, String clave, LocalDate fechaContratacion, LocalDate fechaDespido, BigDecimal salario, EstadoEmpleado estado, DepartamentoEmpleado departamento, Usuario jefe, Rol rol, Persona persona) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.clave = clave;
         this.fechaContratacion = fechaContratacion;
+        this.fechaDespido = fechaDespido;
+        this.salario = salario;
         this.estado = estado;
         this.departamento = departamento;
-        this.salario = salario;
+        this.jefe = jefe;
+        this.rol = rol;
+        this.persona = persona;
     }
     
-    // Método para actualizar fecha de modificación
-    @PreUpdate
-    public void preUpdate() {
-        this.fechaActualizacion = LocalDateTime.now();
-    }
-    
-    // Getters y Setters
     public Long getId() {
         return id;
     }
     
     public void setId(Long id) {
         this.id = id;
-    }
-    
-    public Usuario getOwner() {
-        return owner;
-    }
-    
-    public void setOwner(Usuario owner) {
-        this.owner = owner;
-    }
-    
-    public Usuario getEmpleado() {
-        return empleado;
-    }
-    
-    public void setEmpleado(Usuario empleado) {
-        this.empleado = empleado;
     }
     
     public LocalDate getFechaContratacion() {
@@ -126,42 +112,59 @@ public class Empleado {
         this.estado = estado;
     }
     
-    public Departamento getDepartamento() {
+    public DepartamentoEmpleado getDepartamento() {
         return departamento;
     }
     
-    public void setDepartamento(Departamento departamento) {
+    public void setDepartamento(DepartamentoEmpleado departamento) {
         this.departamento = departamento;
     }
     
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
+    public Usuario getJefe() {
+        return jefe;
     }
     
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setJefe(Usuario jefe) {
+        this.jefe = jefe;
     }
     
-    public LocalDateTime getFechaActualizacion() {
-        return fechaActualizacion;
+    public String getNombre() {
+        return nombre;
     }
     
-    public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
-        this.fechaActualizacion = fechaActualizacion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
-    // Método de utilidad para obtener nombre completo del empleado
-    public String getNombreCompleto() {
-        if (empleado != null && empleado.getPersona() != null) {
-            String nombre = empleado.getNombre();
-            String apellido = empleado.getPersona().getApellido();
-            return nombre + (apellido != null ? " " + apellido : "");
-        }
-        return "Sin asignar";
+    public String getEmail() {
+        return email;
     }
     
-    // Método para verificar si el empleado está activo
-    public boolean isActivo() {
-        return estado == EstadoEmpleado.ACTIVO;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String getClave() {
+        return clave;
+    }
+    
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+    
+    public Rol getRol() {
+        return rol;
+    }
+    
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+    
+    public Persona getPersona() {
+        return persona;
+    }
+    
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 }

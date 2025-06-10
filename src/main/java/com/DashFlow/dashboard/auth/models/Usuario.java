@@ -89,4 +89,24 @@ public class Usuario {
     public Rol getRol() {
         return rol;
     }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+    
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 }

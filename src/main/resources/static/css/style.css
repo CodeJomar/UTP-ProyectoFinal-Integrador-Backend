@@ -414,6 +414,37 @@ body {
   color: var(--color-primario);
 }
 
+/* Estilos para los enlaces de acción */
+a.btn-action-JE {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-claro);
+  color: var(--color-oscuro-variante);
+  cursor: pointer;
+  transition: all 300ms ease;
+  margin-right: 0.5rem;
+  text-decoration: none;
+}
+
+a.btn-action-JE:hover {
+  background: var(--color-info-claro);
+  color: var(--color-oscuro);
+}
+
+a.btn-action-JE.delete-btn:hover {
+  background: var(--color-peligro);
+  color: var(--color-blanco);
+}
+
+a.btn-action-JE.edit-btn:hover {
+  background: var(--color-primario);
+  color: var(--color-blanco);
+}
+
 /* FIN DE LA TABLA DEL MAIN */
 
 /* FIN DEL MAIN */

@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
     <!-- CSS Externo -->
-    <link rel="stylesheet" href="./css/pedidos.css">
+    <link rel="stylesheet" th:href="@{/css/pedidos.css}">
 
-    <script defer src="./js/script.js"></script>
+    <script th:src="@{/js/script.js}"></script>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
             <div class="top-JE">
 
                 <div class="logo-JE">
-                    <img class="img-JE" src="./images/logo-dashboard.png" alt="logo">
+                    <img class="img-JE" th:src="@{/images/logo-dashboard.png}" alt="logo">
                     <h2 class="h2-JE">DASH <span class="peligro-JE">FLOW</span></h2>
                 </div>
 
@@ -262,65 +262,33 @@
                             <table id="employeesTable">
                                 <thead>
                                     <tr>
-                                        <th>
-                                            <input type="checkbox" id="selectAll">
-                                        </th>
-                                        <th>Foto</th>
-                                        <th>Nombre Completo</th>
-                                        <th>Puesto</th>
-                                        <th>Departamento</th>
+                                        <th>Nombre</th>
                                         <th>Email</th>
+                                        <th>Rol</th>
+                                        <th>Departamento</th>
+                                        <th>Salario</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="employeesTableBody">
-                                    <tr>
-                                        <td><input type="checkbox" class="employee-checkbox"></td>
-                                        <td><img src="./images/profile-2.jpg" alt="Foto" width="40" height="40"
-                                                style="border-radius: 50%;"></td>
-                                        <td>Carlos Ruiz</td>
-                                        <td>Gerente de Ventas</td>
-                                        <td>Ventas</td>
-                                        <td>carlos.r@empresa.com</td>
-                                        <td><span class="status-badge exito-JE">Activo</span></td>
+                                    <!-- Los datos se cargarán dinámicamente desde el servidor -->
+                                    <tr th:each="emp : ${empleados}">
+                                        <td th:text="${emp.nombre}"></td>
+                                        <td th:text="${emp.email}"></td>
+                                        <td th:text="${emp.rol.nombreRol}"></td>
+                                        <td th:text="${emp.departamento.nombre}"></td>
+                                        <td th:text="${emp.salario}"></td>
+                                        <td th:text="${emp.estado.nombre}"></td>
                                         <td>
-                                            <button class="btn-action-JE edit-btn"><span
-                                                    class="material-icons-sharp">edit</span></button>
-                                            <button class="btn-action-JE delete-btn"><span
-                                                    class="material-icons-sharp">delete</span></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="employee-checkbox"></td>
-                                        <td><img src="./images/profile-3.jpg" alt="Foto" width="40" height="40"
-                                                style="border-radius: 50%;"></td>
-                                        <td>Laura Mendoza</td>
-                                        <td>Diseñadora Gráfica</td>
-                                        <td>Marketing</td>
-                                        <td>laura.m@empresa.com</td>
-                                        <td><span class="status-badge advertencia-JE">Vacaciones</span></td>
-                                        <td>
-                                            <button class="btn-action-JE edit-btn"><span
-                                                    class="material-icons-sharp">edit</span></button>
-                                            <button class="btn-action-JE delete-btn"><span
-                                                    class="material-icons-sharp">delete</span></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="employee-checkbox"></td>
-                                        <td><img src="./images/profile-4.jpg" alt="Foto" width="40" height="40"
-                                                style="border-radius: 50%;"></td>
-                                        <td>Pedro Castro</td>
-                                        <td>Analista de RRHH</td>
-                                        <td>Recursos Humanos</td>
-                                        <td>pedro.c@empresa.com</td>
-                                        <td><span class="status-badge exito-JE">Activo</span></td>
-                                        <td>
-                                            <button class="btn-action-JE edit-btn"><span
-                                                    class="material-icons-sharp">edit</span></button>
-                                            <button class="btn-action-JE delete-btn"><span
-                                                    class="material-icons-sharp">delete</span></button>
+                                            <a th:href="@{/empleados/editarEmpleado(id=${emp.id})}"
+                                                class="btn-action-JE edit-btn">
+                                                <span class="material-icons-sharp">edit</span>
+                                            </a>
+                                            <a th:href="@{/empleados/eliminarEmpleado(id=${emp.id})}"
+                                                class="btn-action-JE delete-btn">
+                                                <span class="material-icons-sharp">delete</span>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -371,31 +339,26 @@
                             </button>
                         </div>
 
-                        <form class="product-form-JE" id="employeeForm">
+                        <form class="product-form-JE" id="employeeForm" th:action="@{/empleados/guardarEmpleado}"
+                            th:object="${empleado}" method="post">
                             <div class="form-section-JE">
                                 <h3 class="h3-JE">Información Personal</h3>
 
-                                <div class="form-row-JE">
-                                    <div class="form-group-JE">
-                                        <label for="employeeName">Nombre</label>
-                                        <input type="text" id="employeeName" name="name" required>
-                                    </div>
-
-                                    <div class="form-group-JE">
-                                        <label for="employeeSurname">Apellido </label>
-                                        <input type="text" id="employeeSurname" name="surname">
-                                    </div>
+                                <input type="hidden" th:field="*{id}" />
+                                <div class="form-group-JE" style="margin-bottom: 20px;">
+                                    <label for="employeeName">Nombre *</label>
+                                    <input type="text" id="employeeName" th:field="*{nombre}" th:readonly="${empleado.id != null}" required>
                                 </div>
 
                                 <div class="form-row-JE">
                                     <div class="form-group-JE">
                                         <label for="employeeEmail">Email *</label>
-                                        <input type="email" id="employeeEmail" name="email" required>
+                                        <input type="email" id="employeeEmail" th:field="*{email}" name="username" th:readonly="${empleado.id != null}" required>
                                     </div>
 
                                     <div class="form-group-JE">
                                         <label for="employeePassword">Contraseña *</label>
-                                        <input type="password" id="employeePassword" name="password" required>
+                                        <input type="password" id="employeePassword" th:field="*{clave}" name="password" th:readonly="${empleado.id != null}" required>
                                     </div>
                                 </div>
                             </div>
@@ -405,36 +368,35 @@
 
                                 <div class="form-row-JE">
                                     <div class="form-group-JE">
-                                        <label for="employeeHireDate">Fecha de Contratación</label>
-                                        <input type="date" id="employeeHireDate" name="hireDate" required>
+                                        <label for="employeeHireDate">Fecha de Contratación *</label>
+                                        <input type="date" id="employeeHireDate" th:field="*{fechaContratacion}"
+                                            required>
+                                        <small th:text="${empleado.fechaContratacion}" class="p-JE" style="margin-left: 5px;"></small>
                                     </div>
 
                                     <div class="form-group-JE">
                                         <label for="employeeFinalDate">Fecha de Finalización</label>
-                                        <input type="date" id="employeeFinalDate" name="finalDate" required>
+                                        <input type="date" id="employeeFinalDate" th:field="*{fechaDespido}">
+                                        <small th:text="${empleado.fechaDespido}" class="p-JE" style="margin-left: 5px;"></small>
                                     </div>
                                 </div>
 
                                 <div class="form-row-JE">
                                     <div class="form-group-JE">
                                         <label for="employeeStatus">Estado *</label>
-                                        <select id="employeeStatus" name="status" required>
+                                        <select id="employeeStatus" th:field="*{estado}" required>
                                             <option value="">Seleccionar estado</option>
-                                            <option value="activo">Activo</option>
-                                            <option value="vacaciones">Vacaciones</option>
-                                            <option value="ausente">Ausente</option>
-                                            <option value="inactivo">Inactivo</option>
+                                            <option th:each="e : ${estados}" th:value="${e}" th:text="${e.nombre}">
+                                            </option>
                                         </select>
                                     </div>
 
                                     <div class="form-group-JE">
                                         <label for="employeeDepartment">Departamento *</label>
-                                        <select id="employeeDepartment" name="department" required>
+                                        <select id="employeeDepartment" th:field="*{departamento}" required>
                                             <option value="">Seleccionar departamento</option>
-                                            <option value="ventas">Ventas</option>
-                                            <option value="marketing">Marketing</option>
-                                            <option value="operaciones">Operaciones</option>
-                                            <option value="contabilidad">Contabilidad</option>
+                                            <option th:each="depto : ${departamentos}" th:value="${depto}"
+                                                th:text="${depto.nombre}">Ventas</option>
                                         </select>
                                     </div>
                                 </div>
@@ -444,17 +406,16 @@
                                         <label for="employeeSalary">Salario Base</label>
                                         <div class="input-with-icon-JE">
                                             <span class="material-icons-sharp">attach_money</span>
-                                            <input type="number" id="employeeSalary" name="salary" step="0.01">
+                                            <input type="number" id="employeeSalary" th:field="*{salario}" step="0.01">
                                         </div>
                                     </div>
 
                                     <div class="form-group-JE">
-                                        <label for="employeeRole">Rol de Acceso</label>
-                                        <select id="employeeRole" name="role">
+                                        <label for="employeeRole">Rol de Acceso *</label>
+                                        <select id="employeeRole" th:field="*{rol.id}" th:readonly="${empleado.id != null}" required>
                                             <option value="">Seleccionar rol</option>
-                                            <option value="empleado">Empleado</option>
-                                            <option value="gerente">Gerente</option>
-                                            <option value="admin">Administrador</option>
+                                            <option th:each="rol : ${roles}" th:value="${rol.id}"
+                                                th:text="${rol.nombreRol}"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -470,7 +431,6 @@
                                     <span id="submitText">Guardar Empleado</span>
                                 </button>
                             </div>
-
                         </form>
 
                     </div>
@@ -496,7 +456,7 @@
                         <small class="small-JE text-muted-JE" th:text="${usuarioInfo.rol}"></small>
                     </div>
                     <div class="profile-photo-JE">
-                        <img class="img-JE" src="./images/profile-1.jpg" alt="Foto de Perfil">
+                        <img class="img-JE" th:src="@{/images/profile-1.jpg}" alt="Foto de Perfil">
                     </div>
                 </div>
             </div>
@@ -588,7 +548,7 @@
         </div>
     </div>
 
-    <script src="./js/empleados.js"></script>
+    <script th:src="@{/js/empleados.js}"></script>
 
 </body>
 

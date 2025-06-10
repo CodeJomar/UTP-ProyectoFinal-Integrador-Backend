@@ -56,6 +56,21 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepo.save(usuario);
     }
     
+    @Transactional
+    public Usuario guardarDesdeEmpleado(String nombre, String email, String clave, Rol rol) {
+        if (usuarioRepo.findByEmail(email) != null) {
+            throw new RuntimeException("Ya existe un usuario con el correo: " + email);
+        }
+        
+        Persona persona = new Persona();
+        personaRepository.save(persona);
+        
+        Usuario usuario = new Usuario(nombre, email, passwordEncoder.encode(clave), rol, persona);
+        return usuarioRepo.save(usuario);
+    }
+    
+    
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepo.findByEmail(username);
