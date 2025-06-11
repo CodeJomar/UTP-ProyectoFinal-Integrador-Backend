@@ -243,9 +243,9 @@
               <table id="productsTable">
                 <thead>
                   <tr>
-                    <th>Id</th>
-                    <th>Producto</th>
                     <th>Tamaño</th>
+                    <th>Producto</th>
+                    <th>Masa</th>
                     <th>Categoria</th>
                     <th>Costo</th>
                     <th>Precio</th>
@@ -255,9 +255,9 @@
                 </thead>
                 <tbody id="productsTableBody">
                   <tr th:each="prod : ${productos}">
-                    <td th:text="${prod.id}"></td>
-                    <td th:text="${prod.nombre}"></td>
                     <td th:text="${prod.tamanio}"></td>
+                    <td th:text="${prod.nombre}"></td>
+                    <td th:text="${prod.masa}"></td>
                     <td th:text="${prod.categoria}"></td>
                     <td th:text="${prod.precioCosto}"></td>
                     <td th:text="${prod.precioVenta}"></td>

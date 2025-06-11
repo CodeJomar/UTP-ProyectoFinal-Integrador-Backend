@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('Inicializando productos.js');
-
-  // Inicializar pestañas
   initTabs();
-
-  // Inicializar eventos
   initEvents();
-
-  // Inicializar modal
   initModal();
+  checkIfEditing();
 });
 
 function initTabs() {
@@ -22,14 +17,11 @@ function initTabs() {
     item.addEventListener('click', function () {
       console.log('Pestaña clickeada:', this.getAttribute('data-tab'));
 
-      // Remover clases activas
       tabItems.forEach(tab => tab.classList.remove('active-tab-JE'));
       tabPanes.forEach(pane => pane.classList.remove('active-pane-JE'));
 
-      // Añadir clase activa a la pestaña
       this.classList.add('active-tab-JE');
 
-      // Activar el panel correspondiente
       const tabId = this.getAttribute('data-tab');
       const targetPane = document.getElementById(tabId);
 
@@ -44,7 +36,6 @@ function initTabs() {
 }
 
 function initEvents() {
-  // Botón agregar producto
   const addProductBtn = document.getElementById('addProductBtn');
   if (addProductBtn) {
     addProductBtn.addEventListener('click', function () {
@@ -52,11 +43,16 @@ function initEvents() {
       showTab('form');
       resetForm();
     });
-  } else {
-    console.error('Botón addProductBtn no encontrado');
   }
 
-  // Botón cancelar formulario
+  const importProductsBtn = document.getElementById('importProductsBtn');
+  if (importProductsBtn) {
+    importProductsBtn.addEventListener('click', function () {
+      showTab('products');
+      resetForm();
+    })
+  }
+
   const cancelBtn = document.getElementById('cancelForm');
   if (cancelBtn) {
     cancelBtn.addEventListener('click', function () {
@@ -67,7 +63,6 @@ function initEvents() {
     console.error('Botón cancelForm no encontrado');
   }
 
-  // Botón limpiar formulario
   const resetBtn = document.getElementById('resetForm');
   if (resetBtn) {
     resetBtn.addEventListener('click', function () {
@@ -78,26 +73,31 @@ function initEvents() {
     console.error('Botón resetForm no encontrado');
   }
 
-  // Botones de acciones rápidas
-  const importBtn = document.getElementById('importProductsBtn');
-  if (importBtn) {
-    importBtn.addEventListener('click', function () {
-      alert('Funcionalidad de importación en desarrollo...');
-    });
-  }
-
   const exportBtn = document.getElementById('exportProductsBtn');
   if (exportBtn) {
     exportBtn.addEventListener('click', function () {
-      alert('Funcionalidad de exportación en desarrollo...');
+      confirm('¿Estás seguro de exportar datos?');
     });
   }
-
-  // Inicializar menú móvil
   initMobileMenu();
-
-  // Inicializar tema
   initTheme();
+}
+
+function checkIfEditing() {
+  // Verificar si hay un producto cargado para editar
+  const productIdField = document.querySelector('input[name="id"]');
+
+  // Si el campo ID tiene valor, significa que estamos editando
+  if (productIdField && productIdField.value && productIdField.value.trim() !== '') {
+    console.log('Producto en edición detectado, mostrando formulario');
+    showTab('form');
+
+    // Opcional: cambiar el título del formulario
+    const formTitle = document.getElementById('formTitle');
+    if (formTitle) {
+      formTitle.textContent = 'Editando un Producto';
+    }
+  }
 }
 
 function showTab(tabName) {
@@ -106,11 +106,9 @@ function showTab(tabName) {
   const tabItems = document.querySelectorAll('.tab-item-JE');
   const tabPanes = document.querySelectorAll('.tab-pane-JE');
 
-  // Remover clases activas
   tabItems.forEach(tab => tab.classList.remove('active-tab-JE'));
   tabPanes.forEach(pane => pane.classList.remove('active-pane-JE'));
 
-  // Activar pestaña y panel
   const targetTab = document.querySelector(`[data-tab="${tabName}"]`);
   const targetPane = document.getElementById(tabName);
 
