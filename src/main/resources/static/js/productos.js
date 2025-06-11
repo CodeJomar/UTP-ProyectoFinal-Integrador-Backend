@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('Inicializando productos.js');
   initTabs();
   initEvents();
   initModal();
@@ -10,13 +9,8 @@ function initTabs() {
   const tabItems = document.querySelectorAll('.tab-item-JE');
   const tabPanes = document.querySelectorAll('.tab-pane-JE');
 
-  console.log('Pestañas encontradas:', tabItems.length);
-  console.log('Paneles encontrados:', tabPanes.length);
-
   tabItems.forEach(item => {
     item.addEventListener('click', function () {
-      console.log('Pestaña clickeada:', this.getAttribute('data-tab'));
-
       tabItems.forEach(tab => tab.classList.remove('active-tab-JE'));
       tabPanes.forEach(pane => pane.classList.remove('active-pane-JE'));
 
@@ -27,9 +21,6 @@ function initTabs() {
 
       if (targetPane) {
         targetPane.classList.add('active-pane-JE');
-        console.log('Panel activado:', tabId);
-      } else {
-        console.error('Panel no encontrado:', tabId);
       }
     });
   });
@@ -39,7 +30,6 @@ function initEvents() {
   const addProductBtn = document.getElementById('addProductBtn');
   if (addProductBtn) {
     addProductBtn.addEventListener('click', function () {
-      console.log('Botón agregar producto clickeado');
       showTab('form');
       resetForm();
     });
@@ -50,27 +40,21 @@ function initEvents() {
     importProductsBtn.addEventListener('click', function () {
       showTab('products');
       resetForm();
-    })
+    });
   }
 
   const cancelBtn = document.getElementById('cancelForm');
   if (cancelBtn) {
     cancelBtn.addEventListener('click', function () {
-      console.log('Botón cancelar clickeado');
       showTab('products');
     });
-  } else {
-    console.error('Botón cancelForm no encontrado');
   }
 
   const resetBtn = document.getElementById('resetForm');
   if (resetBtn) {
     resetBtn.addEventListener('click', function () {
-      console.log('Botón reset clickeado');
       resetForm();
     });
-  } else {
-    console.error('Botón resetForm no encontrado');
   }
 
   const exportBtn = document.getElementById('exportProductsBtn');
@@ -79,20 +63,17 @@ function initEvents() {
       confirm('¿Estás seguro de exportar datos?');
     });
   }
+
   initMobileMenu();
   initTheme();
 }
 
 function checkIfEditing() {
-  // Verificar si hay un producto cargado para editar
   const productIdField = document.querySelector('input[name="id"]');
 
-  // Si el campo ID tiene valor, significa que estamos editando
   if (productIdField && productIdField.value && productIdField.value.trim() !== '') {
-    console.log('Producto en edición detectado, mostrando formulario');
     showTab('form');
 
-    // Opcional: cambiar el título del formulario
     const formTitle = document.getElementById('formTitle');
     if (formTitle) {
       formTitle.textContent = 'Editando un Producto';
@@ -101,8 +82,6 @@ function checkIfEditing() {
 }
 
 function showTab(tabName) {
-  console.log('Mostrando pestaña:', tabName);
-
   const tabItems = document.querySelectorAll('.tab-item-JE');
   const tabPanes = document.querySelectorAll('.tab-pane-JE');
 
@@ -114,14 +93,10 @@ function showTab(tabName) {
 
   if (targetTab) {
     targetTab.classList.add('active-tab-JE');
-  } else {
-    console.error('Pestaña no encontrada:', tabName);
   }
 
   if (targetPane) {
     targetPane.classList.add('active-pane-JE');
-  } else {
-    console.error('Panel no encontrado:', tabName);
   }
 }
 
@@ -129,13 +104,10 @@ function resetForm() {
   const form = document.getElementById('productForm');
   if (form) {
     form.reset();
-  } else {
-    console.error('Formulario productForm no encontrado');
   }
 }
 
 function initModal() {
-  // Modal de confirmación
   const modalClose = document.getElementById('modalClose');
   const modalCancel = document.getElementById('modalCancel');
 
@@ -183,21 +155,6 @@ function initMobileMenu() {
     closeBtn.addEventListener('click', function () {
       sidebar.style.display = 'none';
       sidebar.classList.remove('show-menu-JE');
-    });
-  }
-}
-
-function initTheme() {
-  const themeToggler = document.querySelector('.theme-toggler-JE');
-
-  if (themeToggler) {
-    themeToggler.addEventListener('click', function () {
-      document.body.classList.toggle('dark-theme-variables-JE');
-
-      const icons = themeToggler.querySelectorAll('span');
-      icons.forEach(icon => {
-        icon.classList.toggle('active-JE');
-      });
     });
   }
 }
