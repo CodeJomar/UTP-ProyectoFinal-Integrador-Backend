@@ -445,23 +445,6 @@
   color: var(--color-peligro);
 }
 
-.status-badge-JE {
-  padding: 0.3rem 0.8rem;
-  border-radius: 1rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.status-badge-JE.active {
-  background: rgba(65, 241, 182, 0.2);
-  color: var(--color-exito);
-}
-
-.status-badge-JE.inactive {
-  background: rgba(125, 141, 161, 0.2);
-  color: var(--color-info-oscuro);
-}
-
 .action-buttons-JE {
   display: flex;
   gap: 0.5rem;
@@ -916,7 +899,7 @@
   color: var(--color-blanco);
 }
 
-.product-item-JE {
+.product-item-JE .form-group-JE {
   margin-bottom: 10px;
 }
 

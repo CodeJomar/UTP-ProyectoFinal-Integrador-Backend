@@ -5,6 +5,7 @@ import com.DashFlow.dashboard.productos.models.Producto;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,7 +26,7 @@ public class Pedido {
     private String celularCliente;
     
     @Column(name = "fecha_pedido", nullable = false)
-    private LocalDateTime fechaPedido;
+    private LocalDate fechaPedido;
     
     @Column(name = "direccion_envio", nullable = false)
     private String direccionEnvio;
@@ -41,11 +42,11 @@ public class Pedido {
     private BigDecimal montoTotal;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_pedido", nullable = false)
+    @Column(name = "estado_pedido", nullable = false, length = 40)
     private EstadoPedido estadoPedido;
     
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_pago", nullable = false)
+    @Column(name = "estado_pago", nullable = false, length = 40)
     private EstadoPago estadoPago;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -54,14 +55,14 @@ public class Pedido {
     
     @PrePersist
     public void prePersist() {
-        this.fechaPedido = LocalDateTime.now();
+        this.fechaPedido = LocalDate.now();
         this.montoTotal = this.producto.getPrecioVenta().multiply(BigDecimal.valueOf(this.cantidad));
     }
     
     public Pedido() {
     }
     
-    public Pedido(Long id, String nombreCliente, String emailCliente, String celularCliente, LocalDateTime fechaPedido, String direccionEnvio, Producto producto, int cantidad, BigDecimal montoTotal, EstadoPedido estadoPedido, EstadoPago estadoPago, Usuario creadoPor) {
+    public Pedido(Long id, String nombreCliente, String emailCliente, String celularCliente, LocalDate fechaPedido, String direccionEnvio, Producto producto, int cantidad, BigDecimal montoTotal, EstadoPedido estadoPedido, EstadoPago estadoPago, Usuario creadoPor) {
         this.id = id;
         this.nombreCliente = nombreCliente;
         this.emailCliente = emailCliente;
@@ -108,11 +109,11 @@ public class Pedido {
         this.celularCliente = celularCliente;
     }
     
-    public LocalDateTime getFechaPedido() {
+    public LocalDate getFechaPedido() {
         return fechaPedido;
     }
     
-    public void setFechaPedido(LocalDateTime fechaPedido) {
+    public void setFechaPedido(LocalDate fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
     

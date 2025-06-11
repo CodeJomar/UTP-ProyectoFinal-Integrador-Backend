@@ -1,9 +1,9 @@
 package com.DashFlow.dashboard.pedidos.models;
 
 public enum EstadoPedido {
-    PENDIENTE("Pendiente", "status-badge advertencia-JE"),
-    ENTREGADO("Entregado", "status-badge exito-JE"),
-    CANCELADO("Cancelado", "status-badge peligro-JE");
+    PENDIENTE("Pendiente", "status-badge-JE pending"),
+    ENTREGADO("Entregado", "status-badge-JE completed"),
+    CANCELADO("Cancelado", "status-badge-JE failed");
     
     private final String displayName;
     private final String cssClass;

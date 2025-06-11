@@ -262,7 +262,7 @@
                   <tr>
                     <th>Cliente</th>
                     <th>Celular</th>
-                    <th>Producto</th>
+                    <th>Pedido</th>
                     <th>Monto</th>
                     <th>Fecha</th>
                     <th>E. Pedido</th>
@@ -271,23 +271,26 @@
                   </tr>
                 </thead>
                 <tbody id="productsTableBody">
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                  <tr th:each="p : ${pedidos}">
+                    <td th:text="${p.nombreCliente}"></td>
+                    <td th:text="${p.celularCliente}"></td>
+                    <td th:text="${p.producto.nombre}"></td>
+                    <td th:text="${p.montoTotal}"></td>
+                    <td th:text="${p.fechaPedido}"></td>
                     <td>
-                      <span class="status-badge advertencia-JE">a</span>
+                      <span th:text="${p.estadoPedido.displayName}" th:class="${p.estadoPedido.cssClass}">
+                      </span>
                     </td>
                     <td>
-                      <span class="status-badge exito-JE">a</span>
+                      <span th:text="${p.estadoPago.displayName}" th:class="${p.estadoPago.cssClass}">
+                      </span>
                     </td>
                     <td>
-                      <a class="btn-action-JE edit-btn">
+                      <a th:href="@{/pedidos/editar(id=${p.id})}" class="btn-action-JE edit-btn">
                         <span class="material-icons-sharp">edit</span>
                       </a>
-                      <a onclick="return confirm('¿Estás seguro?')" class="btn-action-JE delete-btn">
+                      <a th:href="@{/pedidos/eliminar(id=${p.id})}" onclick="return confirm('¿Estás seguro?')"
+                        class="btn-action-JE delete-btn">
                         <span class="material-icons-sharp">delete</span>
                       </a>
                     </td>
@@ -319,37 +322,39 @@
               </button>
             </div>
 
-            <form class="product-form-JE" id="productForm">
+            <form class="product-form-JE" id="productForm" th:action="@{/pedidos/guardar}" th:object="${pedido}"
+              method="post">
+              <input type="hidden" th:field="*{id}" />
               <div class="form-section-JE">
                 <h3 class="h3-JE">Información del Pedido</h3>
 
                 <div class="form-row-JE">
                   <div class="form-group-JE">
                     <label for="customerName">Nombre del Cliente *</label>
-                    <input type="text" id="customerName" name="customerName" required>
+                    <input type="text" id="customerName" th:field="*{nombreCliente}" required>
                   </div>
 
                   <div class="form-group-JE">
                     <label for="orderDate">Fecha del Pedido *</label>
-                    <input type="date" id="orderDate" name="orderDate" required>
+                    <input type="date" id="orderDate" th:value="${pedido.fechaPedido}" readonly>
                   </div>
                 </div>
 
                 <div class="form-row-JE">
                   <div class="form-group-JE">
                     <label for="customerEmail">Email del Cliente *</label>
-                    <input type="email" id="customerEmail" name="customerEmail" required>
+                    <input type="email" id="customerEmail" th:field="*{emailCliente}" required>
                   </div>
 
                   <div class="form-group-JE">
                     <label for="customerTel">Celular del Cliente</label>
-                    <input type="tel" id="customerTel" name="customerTel">
+                    <input type="tel" id="customerTel" th:field="*{celularCliente}" required>
                   </div>
                 </div>
 
                 <div class="form-group-JE">
                   <label for="shippingAddress">Dirección de Envío</label>
-                  <textarea id="shippingAddress" name="shippingAddress" rows="4"></textarea>
+                  <textarea id="shippingAddress" rows="4" th:field="*{direccionEnvio}" required></textarea>
                 </div>
               </div>
 
@@ -359,21 +364,15 @@
                   <div class="product-item-JE">
                     <div class="form-group-JE">
                       <label for="productSelect1">Producto *</label>
-                      <select id="productSelect1" name="product" required>
-                        <option value="">Seleccionar producto</option>
-                        <option value=""></option>
+                      <select id="productSelect1" th:field="*{producto.id}" required>
+                        <option value="" selected disabled>Seleccionar producto</option>
+                        <option th:each="prod : ${productos}" th:value="${prod.id}" th:text="${prod.nombre}">
+                        </option>
                       </select>
                     </div>
                     <div class="form-group-JE">
                       <label for="quantity1">Cantidad *</label>
-                      <input type="number" id="quantity1" name="quantity" min="1" value="1" required>
-                    </div>
-                    <div class="form-group-JE">
-                      <label for="itemPrice1">Monto Total *</label>
-                      <div class="input-with-icon-JE">
-                        <span class="material-icons-sharp">attach_money</span>
-                        <input type="number" id="itemPrice1" name="itemPrice" step="0.01" required>
-                      </div>
+                      <input type="number" id="quantity1" min="1" value="1" th:field="*{cantidad}" required>
                     </div>
                   </div>
                 </div>
@@ -385,14 +384,15 @@
                 <div class="form-row-JE">
                   <div class="form-group-JE">
                     <label for="paymentStatus">Estado de Pago *</label>
-                    <select id="paymentStatus" name="paymentStatus" required>
-                      <option value=""></option>
+                    <select id="paymentStatus" th:field="*{estadoPago}" required>
+                      <option th:each="ep : ${estadosPago}" th:value="${ep}" th:text="${ep.displayName}"></option>
                     </select>
                   </div>
                   <div class="form-group-JE">
                     <label for="orderStatus">Estado del Pedido *</label>
-                    <select id="orderStatus" name="orderStatus" required>
-                      <option value=""></option>
+                    <select id="orderStatus" th:field="*{estadoPedido}" required>
+                      <option th:each="ep : ${estadosPedido}" th:value="${ep}" th:text="${ep.displayName}">
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -455,7 +455,7 @@
           </div>
         </button>
 
-        <a class="quick-action-btn-JE" id="exportOrdersBtn">
+        <a class="quick-action-btn-JE" id="exportOrdersBtn" href="/pedidos/exportar" download>
           <span class="material-icons-sharp">download</span>
           <div class="action-content-JE">
             <h4 class="h4-JE">Exportar Datos</h4>

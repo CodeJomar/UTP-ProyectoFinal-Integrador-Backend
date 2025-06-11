@@ -607,6 +607,28 @@ a.btn-action-JE.edit-btn:hover {
   font-weight: 600;
 }
 
+.status-badge-JE {
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.status-badge-JE.completed {
+  background: rgba(65, 241, 182, 0.2);
+  color: var(--color-exito);
+}
+
+.status-badge-JE.pending {
+  background: rgba(255, 187, 85, 0.2);
+  color: var(--color-adventencia);
+}
+
+.status-badge-JE.failed {
+  background: rgba(255, 119, 130, 0.2);
+  color: var(--color-peligro);
+}
+
 /* FECHA DEL CONTENIDO DEL FINAL A LA DERECHA */
 
 /* FIN DEL CONTENIDO DE LA DERECHA */
