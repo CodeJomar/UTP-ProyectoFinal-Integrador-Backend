@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
 
   <!-- CSS Externo -->
-  <link rel="stylesheet" href="./css/productos.css">
+  <link rel="stylesheet" th:href="@{/css/productos.css}">
 
   <script defer src="./js/script.js"></script>
 </head>
@@ -20,87 +20,67 @@
   <div class="container-JE">
 
     <!-- INICIO DE LA BARRA DE NAVEGACIÓN -->
-
     <aside class="aside-JE">
       <div class="top-JE">
-
         <div class="logo-JE">
-          <img class="img-JE" src="./images/logo-dashboard.png" alt="logo">
+          <img class="img-JE" th:src="@{/images/logo-dashboard.png}" alt="logo">
           <h2 class="h2-JE">DASH <span class="peligro-JE">FLOW</span></h2>
         </div>
-
         <div class="close-JE" id="close-btn-JE">
           <span class="material-icons-sharp">close</span>
         </div>
-
       </div>
 
-
       <div class="sidebar-JE">
-
         <a th:href="@{/dashboard}" class="hipervinculo-JE">
           <span class="material-icons-sharp">dashboard</span>
           <h3 class="h3-JE">Dashboard</h3>
         </a>
-
         <a th:href="@{/cuenta}" class="hipervinculo-JE">
           <span class="material-icons-sharp">person_outline</span>
           <h3 class="h3-JE">Cuenta</h3>
         </a>
-
         <a th:href="@{/productos}" class="hipervinculo-JE active-JE">
           <span class="material-icons-sharp">inventory</span>
           <h3 class="h3-JE">Productos</h3>
         </a>
-
         <a th:href="@{/ingresos}" class="hipervinculo-JE">
           <span class="material-icons-sharp">insights</span>
           <h3 class="h3-JE">Flujo de Ingresos</h3>
         </a>
-
         <a th:href="@{/pedidos}" class="hipervinculo-JE">
           <span class="material-icons-sharp">list_alt</span>
           <h3 class="h3-JE">Pedidos</h3>
           <span class="message-count-danger-JE">26</span>
         </a>
-
         <a th:href="@{/empleados}" class="hipervinculo-JE">
           <span class="material-icons-sharp">badge</span>
           <h3 class="h3-JE">Empleados</h3>
         </a>
-
         <a th:href="@{/tiers}" class="hipervinculo-JE">
           <span class="material-icons-sharp">workspace_premium</span>
           <h3 class="h3-JE">Tiers</h3>
           <span class="message-count-success-JE">Free</span>
         </a>
-
         <a th:href="@{/reportes}" class="hipervinculo-JE">
           <span class="material-icons-sharp">error_outline</span>
           <h3 class="h3-JE">Reportes</h3>
         </a>
-
         <form id="logoutForm" th:action="@{/logout}" method="post" style="display:none;"></form>
         <a onclick="document.getElementById('logoutForm').submit();" class="hipervinculo-JE" style="cursor: pointer;">
           <span class="material-icons-sharp">logout</span>
           <h3 class="h3-JE">Salir</h3>
         </a>
-
       </div>
     </aside>
-
     <!-- FIN DE LA BARRA DE NAVEGACIÓN -->
 
     <!-- INICIO DEL CONTENIDO PRINCIPAL MAIN -->
-
     <main class="main-JE">
-
       <!-- HEADER DE LA PÁGINA -->
       <div class="page-header-JE">
         <h1 class="h1-JE">Gestión de Productos</h1>
       </div>
-
-      <!-- ESTADÍSTICAS RÁPIDAS -->
 
       <!-- NAVEGACIÓN DE PESTAÑAS -->
       <div class="products-tabs-JE">
@@ -121,10 +101,8 @@
 
         <!-- CONTENIDO DE PESTAÑAS -->
         <div class="tab-content-JE">
-
           <!-- PESTAÑA DASHBOARD -->
           <div class="tab-pane-JE active-pane-JE" id="dashboard">
-
             <!-- ESTADÍSTICAS PRINCIPALES -->
             <div class="stats-grid-JE">
               <div class="stat-card-JE">
@@ -177,7 +155,6 @@
               <h2 class="h2-JE">Productos Destacados</h2>
 
               <div class="featured-grid-JE">
-
                 <!-- PRODUCTO MÁS VENDIDO DE LA SEMANA -->
                 <div class="featured-card-JE">
                   <div class="featured-header-JE">
@@ -185,9 +162,6 @@
                       <span class="material-icons-sharp">star</span>
                       Más Vendido - Semana
                     </div>
-                  </div>
-                  <div class="product-image-JE">
-                    <img src="/placeholder.svg?height=120&width=120" alt="Producto">
                   </div>
                   <div class="product-info-JE">
                     <h3 class="h3-JE">Smartphone Galaxy Pro</h3>
@@ -213,9 +187,6 @@
                       Más Vendido - Mes
                     </div>
                   </div>
-                  <div class="product-image-JE">
-                    <img src="/placeholder.svg?height=120&width=120" alt="Producto">
-                  </div>
                   <div class="product-info-JE">
                     <h3 class="h3-JE">Laptop Gaming X1</h3>
                     <p class="p-JE text-muted-JE">Categoría: Computadoras</p>
@@ -231,15 +202,12 @@
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
-
           </div>
 
           <!-- PESTAÑA LISTA DE PRODUCTOS -->
           <div class="tab-pane-JE" id="products">
-
             <!-- FILTROS Y BÚSQUEDA -->
             <div class="filters-section-JE">
               <div class="search-box-JE">
@@ -275,20 +243,37 @@
               <table id="productsTable">
                 <thead>
                   <tr>
-                    <th>
-                      <input type="checkbox" id="selectAll">
-                    </th>
-                    <th>Imagen</th>
+                    <th>Id</th>
                     <th>Producto</th>
-                    <th>Categoría</th>
+                    <th>Tamaño</th>
+                    <th>Categoria</th>
+                    <th>Costo</th>
                     <th>Precio</th>
-                    <th>Stock</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody id="productsTableBody">
-                  <!-- Los productos se cargarán dinámicamente -->
+                  <tr th:each="prod : ${productos}">
+                    <td th:text="${prod.id}"></td>
+                    <td th:text="${prod.nombre}"></td>
+                    <td th:text="${prod.tamanio}"></td>
+                    <td th:text="${prod.categoria}"></td>
+                    <td th:text="${prod.precioCosto}"></td>
+                    <td th:text="${prod.precioVenta}"></td>
+                    <td>
+                      <span th:text="${prod.estado.displayName}" th:class="${prod.estado.cssClass}"></span>
+                    </td>
+                    <td>
+                      <a th:href="@{/productos/editarProducto(id=${prod.id})}" class="btn-action-JE edit-btn">
+                        <span class="material-icons-sharp">edit</span>
+                      </a>
+                      <a th:href="@{/productos/eliminarProducto(id=${prod.id})}"
+                        onclick="return confirm('¿Estás seguro?')" class="btn-action-JE delete-btn">
+                        <span class="material-icons-sharp">delete</span>
+                      </a>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -305,33 +290,10 @@
                 <span class="material-icons-sharp">chevron_right</span>
               </button>
             </div>
-
-            <!-- ACCIONES MASIVAS -->
-            <div class="bulk-actions-JE" id="bulkActions" style="display: none;">
-              <div class="bulk-info-JE">
-                <span id="selectedCount">0</span> productos seleccionados
-              </div>
-              <div class="bulk-buttons-JE">
-                <button class="btn-secondary-JE" id="bulkActivate">
-                  <span class="material-icons-sharp">check_circle</span>
-                  Activar
-                </button>
-                <button class="btn-secondary-JE" id="bulkDeactivate">
-                  <span class="material-icons-sharp">cancel</span>
-                  Desactivar
-                </button>
-                <button class="btn-danger-JE" id="bulkDelete">
-                  <span class="material-icons-sharp">delete</span>
-                  Eliminar
-                </button>
-              </div>
-            </div>
-
           </div>
 
           <!-- PESTAÑA FORMULARIO -->
           <div class="tab-pane-JE" id="form">
-
             <div class="form-header-JE">
               <h2 class="h2-JE" id="formTitle">Agregar Nuevo Producto</h2>
               <button class="btn-secondary-JE" id="cancelForm">
@@ -340,7 +302,9 @@
               </button>
             </div>
 
-            <form class="product-form-JE" id="productForm">
+            <form class="product-form-JE" id="productForm" th:action="@{/productos/guardarProducto}"
+              th:object="${producto}" method="post">
+              <input type="hidden" th:field="*{id}">
 
               <!-- INFORMACIÓN BÁSICA -->
               <div class="form-section-JE">
@@ -349,36 +313,44 @@
                 <div class="form-row-JE">
                   <div class="form-group-JE">
                     <label for="productName">Nombre del Producto *</label>
-                    <input type="text" id="productName" name="name" required>
+                    <input type="text" id="productName" th:field="*{nombre}" name="name"
+                      th:readonly="${producto.id != null}" required>
                   </div>
 
                   <div class="form-group-JE">
-                    <label for="productSku">SKU *</label>
-                    <input type="text" id="productSku" name="sku" required>
+                    <label for="productSize">Tamaño *</label>
+                    <select th:field="*{tamanio}" id="productSize" name="size" th:disabled="${producto.id != null}"
+                      required>
+                      <option value="" selected disabled>Seleccionar tamaño</option>
+                      <option th:each="tam : ${tamanios}" th:value="${tam}" th:text="${tam.displayName}"></option>
+                    </select>
                   </div>
                 </div>
 
                 <div class="form-row-JE">
                   <div class="form-group-JE">
                     <label for="productCategory">Categoría *</label>
-                    <select id="productCategory" name="category" required>
-                      <option value="">Seleccionar categoría</option>
-                      <option value="electronicos">Electrónicos</option>
-                      <option value="ropa">Ropa</option>
-                      <option value="hogar">Hogar</option>
-                      <option value="deportes">Deportes</option>
+                    <select th:field="*{categoria}" id="productCategory" name="category"
+                      th:disabled="${producto.id != null}" required>
+                      <option value="" selected disabled>Seleccionar categoría</option>
+                      <option th:each="cat : ${categorias}" th:value="${cat}" th:text="${cat.displayName}"></option>
                     </select>
                   </div>
 
                   <div class="form-group-JE">
-                    <label for="productBrand">Marca</label>
-                    <input type="text" id="productBrand" name="brand">
+                    <label for="productMass">Masa *</label>
+                    <select th:field="*{masa}" id="productMass" name="mass" th:disabled="${producto.id != null}"
+                      required>
+                      <option value="" selected disabled>Seleccionar masa</option>
+                      <option th:each="m : ${masas}" th:value="${m}" th:text="${m.displayName}"></option>
+                    </select>
                   </div>
                 </div>
 
                 <div class="form-group-JE">
                   <label for="productDescription">Descripción</label>
-                  <textarea id="productDescription" name="description" rows="4"></textarea>
+                  <textarea id="productDescription" th:field="*{descripcion}" name="description" rows="4"
+                    style="resize: none;"></textarea>
                 </div>
               </div>
 
@@ -391,7 +363,8 @@
                     <label for="productPrice">Precio de Venta *</label>
                     <div class="input-with-icon-JE">
                       <span class="material-icons-sharp">attach_money</span>
-                      <input type="number" id="productPrice" name="price" step="0.01" required>
+                      <input th:field="*{precioVenta}" type="number" id="productPrice" name="price" step="0.01"
+                        required>
                     </div>
                   </div>
 
@@ -399,85 +372,41 @@
                     <label for="productCost">Costo</label>
                     <div class="input-with-icon-JE">
                       <span class="material-icons-sharp">attach_money</span>
-                      <input type="number" id="productCost" name="cost" step="0.01">
+                      <input th:field="*{precioCosto}" type="number" id="productCost" name="cost" step="0.01">
                     </div>
                   </div>
                 </div>
 
-                <div class="form-row-JE">
-                  <div class="form-group-JE">
-                    <label for="productStock">Stock Actual *</label>
-                    <input type="number" id="productStock" name="stock" required>
-                  </div>
+                <div class="form-group-JE">
+                  <label for="productState">Estado *</label>
+                  <select th:field="*{estado}" id="productState" name="state" required>
+                    <option value="" selected disabled>Seleccionar estado</option>
+                    <option th:each="e : ${estados}" th:value="${e}" th:text="${e.displayName}"></option>
+                  </select>
+                </div>
 
-                  
-              </div>
-
-              <!-- IMAGEN DEL PRODUCTO -->
-              <div class="form-section-JE">
-                <h3 class="h3-JE">Imagen del Producto</h3>
-
-                <div class="image-upload-JE">
-                  <div class="image-preview-JE" id="imagePreview">
-                    <span class="material-icons-sharp">add_photo_alternate</span>
-                    <p class="p-JE">Haz clic para subir una imagen</p>
-                  </div>
-                  <input type="file" id="productImage" name="image" accept="image/*" style="display: none;">
+                <!-- BOTONES DE ACCIÓN -->
+                <div class="form-actions-JE">
+                  <button type="button" class="btn-secondary-JE" id="resetForm">
+                    <span class="material-icons-sharp">refresh</span>
+                    Limpiar
+                  </button>
+                  <button type="submit" class="btn-primary-JE">
+                    <span class="material-icons-sharp">save</span>
+                    <span id="submitText">Guardar Producto</span>
+                  </button>
                 </div>
               </div>
-
-              <!-- CONFIGURACIÓN -->
-              <div class="form-section-JE">
-                <h3 class="h3-JE">Configuración</h3>
-
-                <div class="form-row-JE">
-                  <div class="form-group-JE">
-                    <label class="checkbox-label-JE">
-                      <input type="checkbox" id="productActive" name="active" checked>
-                      <span class="checkmark-JE"></span>
-                      Producto activo
-                    </label>
-                  </div>
-
-                  <div class="form-group-JE">
-                    <label class="checkbox-label-JE">
-                      <input type="checkbox" id="productFeatured" name="featured">
-                      <span class="checkmark-JE"></span>
-                      Producto destacado
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- BOTONES DE ACCIÓN -->
-              <div class="form-actions-JE">
-                <button type="button" class="btn-secondary-JE" id="resetForm">
-                  <span class="material-icons-sharp">refresh</span>
-                  Limpiar
-                </button>
-                <button type="submit" class="btn-primary-JE">
-                  <span class="material-icons-sharp">save</span>
-                  <span id="submitText">Guardar Producto</span>
-                </button>
-              </div>
-
             </form>
-
           </div>
-
         </div>
       </div>
-
     </main>
-
     <!-- FIN DEL CONTENIDO PRINCIPAL MAIN -->
 
     <!-- INICIO DEL CONTENIDO DE LA DERECHA -->
-
     <div class="right-JE">
-
       <!-- INICIO DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
-
       <div class="top-JE">
         <button id="menu-btn-JE">
           <span class="material-icons-sharp">menu</span>
@@ -492,15 +421,13 @@
             <small class="small-JE text-muted-JE" th:text="${usuarioInfo.rol}"></small>
           </div>
           <div class="profile-photo-JE">
-            <img class="img-JE" src="./images/profile-1.jpg" alt="Foto de Perfil">
+            <img class="img-JE" th:src="@{/images/profile-1.jpg}" alt="Foto de Perfil">
           </div>
         </div>
       </div>
-
       <!-- FIN DE LAS OPCIONES DE LOGIN Y MODO OSCURO -->
 
       <!-- INICIO DE ACCIONES RÁPIDAS -->
-
       <div class="quick-actions-JE">
         <h2 class="h2-JE">Acciones Rápidas</h2>
 
@@ -513,26 +440,24 @@
         </button>
 
         <button class="quick-action-btn-JE" id="importProductsBtn">
-          <span class="material-icons-sharp">upload</span>
+          <span class="material-icons-sharp">visibility</span>
           <div class="action-content-JE">
-            <h4 class="h4-JE">Importar CSV</h4>
-            <p class="p-JE text-muted-JE">Cargar productos masivamente</p>
+            <h4 class="h4-JE">Productos</h4>
+            <p class="p-JE text-muted-JE">Ver listado de productos</p>
           </div>
         </button>
 
-        <button class="quick-action-btn-JE" id="exportProductsBtn">
+        <a class="hipervinculo-JE quick-action-btn-JE" id="exportProductsBtn" href="/productos/exportar" download>
           <span class="material-icons-sharp">download</span>
           <div class="action-content-JE">
             <h4 class="h4-JE">Exportar Datos</h4>
             <p class="p-JE text-muted-JE">Descargar lista de productos</p>
           </div>
-        </button>
+        </a>
       </div>
-
       <!-- FIN DE ACCIONES RÁPIDAS -->
 
       <!-- INICIO DE ALERTAS DE INVENTARIO -->
-
       <div class="inventory-alerts-JE">
         <h2 class="h2-JE">Alertas de Inventario</h2>
 
@@ -569,11 +494,8 @@
           </div>
         </div>
       </div>
-
       <!-- FIN DE ALERTAS DE INVENTARIO -->
-
     </div>
-
     <!-- FIN DEL CONTENIDO DE LA DERECHA -->
   </div>
 
@@ -597,7 +519,7 @@
   </div>
 
   <!-- Script para la funcionalidad de productos -->
-  <script src="./js/productos.js"></script>
+  <script th:src="@{/js/productos.js}"></script>
 
 </body>
 
