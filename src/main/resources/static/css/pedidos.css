@@ -916,6 +916,11 @@
   color: var(--color-blanco);
 }
 
+.product-item-JE {
+  margin-bottom: 10px;
+}
+
+
 /* Responsive para tablets */
 @media screen and (max-width: 1200px) {
   .container-JE {
