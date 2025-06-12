@@ -79,7 +79,6 @@ public class PedidoController {
         headerStyle.setFillForegroundColor(IndexedColors.DARK_BLUE.getIndex());
         headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         
-        // Columnas
         String[] columnas = {
                 "Nombre Cliente", "Email", "Celular", "Fecha", "Dirección",
                 "Producto", "Precio Producto", "Cantidad", "Monto Total",
@@ -93,7 +92,6 @@ public class PedidoController {
             cell.setCellStyle(headerStyle);
         }
         
-        // Datos
         int rowIndex = 1;
         for (Pedido p : pedidos) {
             Row row = sheet.createRow(rowIndex++);
@@ -111,7 +109,6 @@ public class PedidoController {
             row.createCell(11).setCellValue(p.getCreadoPor().getNombre());
         }
         
-        // Autoajustar columnas
         for (int i = 0; i < columnas.length; i++) {
             sheet.autoSizeColumn(i);
         }

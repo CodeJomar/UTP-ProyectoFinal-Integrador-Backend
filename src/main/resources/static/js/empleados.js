@@ -44,7 +44,7 @@ function initEvents() {
   });
 
   document.getElementById('exportEmployeesBtn').addEventListener('click', function () {
-    alert('Funcionalidad de exportación en desarrollo...');
+    confirm('¿Estas seguro de exportar los datos?');
   });
 }
 
